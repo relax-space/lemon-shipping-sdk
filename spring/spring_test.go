@@ -1,28 +1,21 @@
-# lemon-shipping-sdk
-shipping go-sdk
+package spring
 
+import (
+	"fmt"
+	"os"
+	"testing"
 
-## Installation
-```
-go get github.com/relax-space/lemon-shipping-sdk/spring
-go get github.com/relax-space/lemon-shipping-sdk/sf
-```
+	"github.com/relax-space/go-kit/test"
+)
 
-## Spring
-docs:http://dev.spring56.com:81/doc/?p=api
-  >  create  
-  >  cancel  
-  >  query  
-
-### spring -- create
-```go
-custDto := &ReqCustomerDto{
-		Url: "***",
+func Test_Create(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url: os.Getenv("SPRING_URL"),
 	}
 	reqDto := &ReqCreateDto{
 		ReqBase: &ReqBase{
-			Code:     "***",
-			Password: "***",
+			Code:     os.Getenv("SPRING_CODE"),
+			Password: os.Getenv("SPRING_PWD"),
 		},
 		Content: &CreateContentDto{
 			Quantity: 1,
@@ -45,41 +38,42 @@ custDto := &ReqCustomerDto{
 		},
 	}
 	status, respDto, err := Create(reqDto, custDto)
+	test.Ok(t, err)
 	fmt.Println(status, respDto.RespBase, respDto.Info, err)
-```
+}
 
-###  spring -- cancel
-```go
+func Test_Cancel(t *testing.T) {
 	custDto := &ReqCustomerDto{
-		Url: "***",
+		Url: os.Getenv("SPRING_URL"),
 	}
 	reqDto := &ReqCancelDto{
 		ReqBase: &ReqBase{
-			Code:     "***",
-			Password: "***",
+			Code:     os.Getenv("SPRING_CODE"),
+			Password: os.Getenv("SPRING_PWD"),
 		},
 		Content: &CancelContentDto{
 			BillNo: "7100047050",
 		},
 	}
 	status, respDto, err := Cancel(reqDto, custDto)
+	test.Ok(t, err)
 	fmt.Println(status, respDto.RespBase, respDto.Info, err)
-```
+}
 
-###  spring -- query
-```go
+func Test_Query(t *testing.T) {
 	custDto := &ReqCustomerDto{
-		Url: "***",
+		Url: os.Getenv("SPRING_URL"),
 	}
 	reqDto := &ReqQueryDto{
 		ReqBase: &ReqBase{
-			Code:     "***",
-			Password: "***",
+			Code:     os.Getenv("SPRING_CODE"),
+			Password: os.Getenv("SPRING_PWD"),
 		},
 		Content: &QueryContentDto{
 			OrderNo: "1709051572807",
 		},
 	}
 	status, respDto, err := Query(reqDto, custDto)
+	test.Ok(t, err)
 	fmt.Println(status, respDto.RespBase, respDto.Info, err)
-```
+}
