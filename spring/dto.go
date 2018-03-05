@@ -1,5 +1,7 @@
 package spring
 
+import "github.com/pangpanglabs/goutils/behaviorlog"
+
 /*
 request param
 */
@@ -101,5 +103,6 @@ type QueryInfoDto struct {
 }
 
 type ReqCustomerDto struct {
-	Url string `json:"url,omitempty"`
+	Url        string `json:"url,omitempty"`
+	LogContext *behaviorlog.LogContext
 }

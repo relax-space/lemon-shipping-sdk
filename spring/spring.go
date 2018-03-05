@@ -1,14 +1,12 @@
 package spring
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
-	"github.com/relax-space/go-kit/httpreq"
+	"github.com/pangpanglabs/goutils/httpreq"
 	"github.com/relax-space/go-kitt/mapstruct"
 
 	"github.com/relax-space/go-kit/sign"
@@ -32,23 +30,19 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (code string, respDto
 		code = E02
 		return
 	}
-	resp, body, err := httpreq.NewPost(custDto.Url,
-		[]byte("data="+data),
-		&httpreq.Header{ContentType: httpreq.MIMEApplicationFormUTF8}, nil)
-	if err != nil || resp == nil {
-		code = E01
-		return
-	}
-	if resp.StatusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", resp.StatusCode)
-		return
-	}
-	newBody := strings.Replace(string(body), "\ufeff", "", -1)
 	var respCommonDto RespCommonDto
-	err = json.Unmarshal([]byte(newBody), &respCommonDto)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	if custDto.LogContext != nil {
+		req.WithBehaviorLogContext(custDto.LogContext)
+	}
+	statusCode, err := req.Call(&respCommonDto)
 	if err != nil {
-		code = E04
+		code = E01
+		return
+	}
+	if statusCode != http.StatusOK {
+		code = E01
+		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
 		return
 	}
 	if respCommonDto.Result != "true" {
@@ -85,23 +79,19 @@ func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (code string, respDto
 		code = E02
 		return
 	}
-	resp, body, err := httpreq.NewPost(custDto.Url,
-		[]byte("data="+data),
-		&httpreq.Header{ContentType: httpreq.MIMEApplicationFormUTF8}, nil)
-	if err != nil || resp == nil {
-		code = E01
-		return
-	}
-	if resp.StatusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", resp.StatusCode)
-		return
-	}
-	newBody := strings.Replace(string(body), "\ufeff", "", -1)
 	var respCommonDto RespCommonDto
-	err = json.Unmarshal([]byte(newBody), &respCommonDto)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	if custDto.LogContext != nil {
+		req.WithBehaviorLogContext(custDto.LogContext)
+	}
+	statusCode, err := req.Call(&respCommonDto)
 	if err != nil {
-		code = E04
+		code = E01
+		return
+	}
+	if statusCode != http.StatusOK {
+		code = E01
+		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
 		return
 	}
 	if respCommonDto.Result != "true" {
@@ -142,23 +132,19 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (code string, respDto *
 		code = E02
 		return
 	}
-	resp, body, err := httpreq.NewPost(custDto.Url,
-		[]byte("data="+data),
-		&httpreq.Header{ContentType: httpreq.MIMEApplicationFormUTF8}, nil)
-	if err != nil || resp == nil {
-		code = E01
-		return
-	}
-	if resp.StatusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", resp.StatusCode)
-		return
-	}
-	newBody := strings.Replace(string(body), "\ufeff", "", -1)
 	var respCommonDto RespCommonDto
-	err = json.Unmarshal([]byte(newBody), &respCommonDto)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	if custDto.LogContext != nil {
+		req.WithBehaviorLogContext(custDto.LogContext)
+	}
+	statusCode, err := req.Call(&respCommonDto)
 	if err != nil {
-		code = E04
+		code = E01
+		return
+	}
+	if statusCode != http.StatusOK {
+		code = E01
+		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
 		return
 	}
 	if respCommonDto.Result != "true" {
