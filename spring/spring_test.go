@@ -52,7 +52,7 @@ func Test_Cancel(t *testing.T) {
 			Password: os.Getenv("SPRING_PWD"),
 		},
 		Content: &CancelContentDto{
-			BillNo: "7100046967",
+			BillNo: "7100046801",
 		},
 	}
 	status, respDto, err := Cancel(reqDto, custDto)
