@@ -16,7 +16,7 @@ import (
 1.base64 param
 2.request api
 */
-func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (code string, respDto *RespCreateDto, err error) {
+func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespCreateDto, err error) {
 	reqDto.Func = "order.submit"
 	reqDto.Datetime = time.Now().UTC().Add(8 * time.Hour).Format("20060102150405")
 	signParam := reqDto.Code + reqDto.Password + reqDto.Datetime
@@ -32,10 +32,7 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (code string, respDto
 	}
 	var respCommonDto RespCommonDto
 	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
-	if custDto.LogContext != nil {
-		req.WithBehaviorLogContext(custDto.LogContext)
-	}
-	statusCode, err := req.Call(&respCommonDto)
+	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01
 		return
@@ -65,7 +62,7 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (code string, respDto
 	return
 }
 
-func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (code string, respDto *RespCancelDto, err error) {
+func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespCancelDto, err error) {
 	reqDto.Func = "order.cancel"
 	reqDto.Datetime = time.Now().UTC().Add(8 * time.Hour).Format("20060102150405")
 	signParam := reqDto.Code + reqDto.Password + reqDto.Datetime
@@ -81,10 +78,7 @@ func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (code string, respDto
 	}
 	var respCommonDto RespCommonDto
 	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
-	if custDto.LogContext != nil {
-		req.WithBehaviorLogContext(custDto.LogContext)
-	}
-	statusCode, err := req.Call(&respCommonDto)
+	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01
 		return
@@ -118,7 +112,7 @@ func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (code string, respDto
 	return
 }
 
-func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (code string, respDto *RespQueryDto, err error) {
+func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespQueryDto, err error) {
 	reqDto.Func = "order.trace"
 	reqDto.Datetime = time.Now().UTC().Add(8 * time.Hour).Format("20060102150405")
 	signParam := reqDto.Code + reqDto.Password + reqDto.Datetime
@@ -134,10 +128,7 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (code string, respDto *
 	}
 	var respCommonDto RespCommonDto
 	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
-	if custDto.LogContext != nil {
-		req.WithBehaviorLogContext(custDto.LogContext)
-	}
-	statusCode, err := req.Call(&respCommonDto)
+	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01
 		return
