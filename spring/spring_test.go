@@ -37,9 +37,9 @@ func Test_Create(t *testing.T) {
 			},
 		},
 	}
-	status, respDto, err := Create(reqDto, custDto)
+	status, code, respDto, err := Create(reqDto, custDto)
 	test.Ok(t, err)
-	fmt.Println(status, respDto.RespBase, respDto.Info, err)
+	fmt.Println(status, code, respDto.RespBase, respDto.Info, err)
 }
 
 func Test_Cancel(t *testing.T) {
@@ -55,9 +55,9 @@ func Test_Cancel(t *testing.T) {
 			BillNo: "7100046801",
 		},
 	}
-	status, respDto, err := Cancel(reqDto, custDto)
+	status, code, respDto, err := Cancel(reqDto, custDto)
 	test.Ok(t, err)
-	fmt.Println(status, respDto.RespBase, respDto.Info, err)
+	fmt.Println(status, code, respDto.RespBase, respDto.Info, err)
 }
 
 func Test_Query(t *testing.T) {
@@ -73,7 +73,7 @@ func Test_Query(t *testing.T) {
 			OrderNo: "1709051572807",
 		},
 	}
-	status, respDto, err := Query(reqDto, custDto)
+	status, code, respDto, err := Query(reqDto, custDto)
 	test.Ok(t, err)
-	fmt.Println(status, respDto.RespBase, respDto.Info, err)
+	fmt.Println(status, code, respDto.RespBase, respDto.Info, err)
 }
