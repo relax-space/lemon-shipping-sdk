@@ -7,15 +7,15 @@ import (
 //request param
 type ReqCreateDto struct {
 	*ReqBase
-	BizData *CreateContentDto
+	BizData *CreateContentDto `xml:"bizData" json:"biz_data"`
 }
 type ReqCancelDto struct {
 	*ReqBase
-	BizData *CancelContentDto
+	BizData *CancelContentDto `xml:"bizData" json:"biz_data"`
 }
 type ReqQueryDto struct {
 	*ReqBase
-	BizData *QueryContentDto
+	BizData *QueryContentDto `xml:"bizData" json:"biz_data"`
 }
 
 type RespQueryDto struct {
