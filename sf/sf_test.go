@@ -1,6 +1,7 @@
 package sf
 
 import (
+	"encoding/xml"
 	"fmt"
 	"os"
 	"testing"
@@ -143,4 +144,27 @@ func Test_Confirm(t *testing.T) {
 	fmt.Println(statusCode, code, err)
 	fmt.Printf("%+v", respDto)
 	test.Ok(t, err)
+}
+
+func Test_Push(t *testing.T) {
+	reqDto := &ReqPushDto{
+		ReqBaseDto: &ReqBaseDto{
+			Service: "RouterPushService",
+			Lang:    "zh-CN",
+		},
+		Body: &ReqBodyPushDto{
+			WaybillRoute: &ReqWaybillRouteDto{
+				Id:           10049361064087,
+				OrderId:      "TE201500106",
+				MailNo:       "444003079772",
+				AcceptTime:   "2015-01-04 17:42:00",
+				AcceptAddres: "深圳",
+
+				Remark: "上门收件",
+				OpCode: "50",
+			},
+		},
+	}
+	b, err := xml.Marshal(reqDto)
+	fmt.Println(string(b), err)
 }
