@@ -23,7 +23,7 @@ func Test_Create(t *testing.T) {
 			ProjectCode:   "ELAND_YLO2O",
 			TransportMode: "EXP",
 			//ShippingOrderNo:"",
-			OrderCode: "best-014",
+			OrderCode: "best-016",
 			Sender: &SenderDto{
 				Name:            "shipping",
 				Province:        "北京市",
@@ -112,9 +112,10 @@ func Test_Query(t *testing.T) {
 		},
 	}
 	_, _, respDto, err := Query(reqDto, custDto)
-	fmt.Printf("%+v", respDto)
+	fmt.Printf("%+v", respDto.OrderInfos.OrderInfo)
 	fmt.Println("")
 	fmt.Printf("%+v", err)
 	fmt.Println("")
+	err = fmt.Errorf("%v", "hello test")
 	test.Ok(t, err)
 }
