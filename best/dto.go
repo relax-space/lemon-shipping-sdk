@@ -24,6 +24,11 @@ type RespQueryDto struct {
 	OrderInfos *OrderInfosDto `xml:"orderInfos" json:"orderInfos"`
 }
 
+type ReqPushDto struct {
+	TmsCode    string         `xml:"tmsCode" json:"tmsCode"`
+	OrderInfos *OrderInfosDto `xml:"orderInfos" json:"orderInfos"`
+}
+
 //dto
 type ReqBase struct {
 	PartnerID   string `xml:"partnerID" json:"partnerID,omitempty"`
