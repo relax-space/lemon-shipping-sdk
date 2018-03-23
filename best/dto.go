@@ -25,8 +25,17 @@ type RespQueryDto struct {
 }
 
 type ReqPushDto struct {
-	TmsCode    string         `xml:"tmsCode" json:"tmsCode"`
-	OrderInfos *OrderInfosDto `xml:"orderInfos" json:"orderInfos"`
+	CustomerCode             string        `xml:"customerCode" json:"customerCode"`
+	CustomerName             string        `xml:"customerName" json:"customerName"`
+	ProjectCode              string        `xml:"projectCode" json:"projectCode"`
+	OrderCode                string        `xml:"orderCode" json:"orderCode"`
+	Status                   string        `xml:"status" json:"status"`
+	CurrentStatusDatetime    string        `xml:"currentStatusDatetime" json:"currentStatusDatetime"`
+	CurrentStatusLocation    string        `xml:"currentStatusLocation" json:"currentStatusLocation"`
+	CurrentStatusDescription string        `xml:"currentStatusDescription" json:"currentStatusDescription"`
+	CurrentStatusUpdator     string        `xml:"currentStatusUpdator" json:"currentStatusUpdator"`
+	PortalUrl                string        `xml:"portalUrl" json:"portalUrl"`
+	Shippings                *ShippingsDto `xml:"shippings" json:"shippings"`
 }
 
 //dto
