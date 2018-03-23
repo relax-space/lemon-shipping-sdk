@@ -57,6 +57,12 @@ type RespCreateDto struct {
 	Body    *RespBodyCreateDto `xml:"Body,omitempty" json:"Body,omitempty"`
 	Error   RespErrorDto       `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
 }
+type RespPushDto struct {
+	XMLName xml.Name     `xml:"Response,omitempty" json:"Response,omitempty"`
+	Service string       `xml:"service,attr,omitempty" json:"service,omitempty"`
+	Head    string       `xml:"Head,omitempty" json:"Head,omitempty"`
+	Error   RespErrorDto `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
+}
 
 //util info
 
