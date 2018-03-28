@@ -99,7 +99,7 @@ func Test_Route(t *testing.T) {
 		if respDto.Body.RouteResponse != nil {
 			fmt.Printf("respDto.Body.RouteResponse:%+v\n", *(respDto.Body.RouteResponse))
 			if respDto.Body.RouteResponse.Route != nil {
-				fmt.Printf("respDto.Body.RouteResponse.Route:%+v\n", *(respDto.Body.RouteResponse.Route))
+				fmt.Printf("respDto.Body.RouteResponse.Route:%+v\n", respDto.Body.RouteResponse.Route)
 			}
 		}
 	}

@@ -291,9 +291,9 @@ type RespBodyRouteDto struct {
 }
 
 type RouteResponseDto struct {
-	OrderId string      `xml:"orderid,attr,omitempty" json:"orderid"`
-	MailNo  string      `xml:"mail_no,attr,omitempty" json:"mail_no"`
-	Route   *[]RouteDto `xml:"Route,omitempty" json:"Route"`
+	OrderId string     `xml:"orderid,attr,omitempty" json:"orderid"`
+	MailNo  string     `xml:"mail_no,attr,omitempty" json:"mail_no"`
+	Route   []RouteDto `xml:"Route,omitempty" json:"Route"`
 }
 type RouteDto struct {
 	AcceptTime    string `xml:"accept_time,attr,omitempty" json:"accept_time"`
