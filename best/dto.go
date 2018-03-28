@@ -99,7 +99,7 @@ type ServiceDto struct {
 	ServiceCodes          *ServicesDto `xml:"serviceCodes" json:"serviceCodes,omitempty"`
 }
 type ServicesDto struct {
-	Service *[]ServiceCodeDto `xml:"service" json:"service,omitempty"`
+	Service []ServiceCodeDto `xml:"service" json:"service,omitempty"`
 }
 type ServiceCodeDto struct {
 	ServiceDefinitionCode string `xml:"serviceDefinitionCode" json:"serviceDefinitionCode,omitempty"`
@@ -107,7 +107,7 @@ type ServiceCodeDto struct {
 }
 
 type ItemsDto struct {
-	Item *[]ItemDto `xml:"item" json:"item,omitempty"`
+	Item []ItemDto `xml:"item" json:"item,omitempty"`
 }
 type ItemDto struct {
 	LineNo         string  `xml:"lineNo" json:"lineNo,omitempty"`
@@ -141,14 +141,14 @@ type ReqCustomerDto struct {
 }
 
 type ErrorsDto struct {
-	Error *[]ErrorDto `xml:"error" json:"error"`
+	Error []ErrorDto `xml:"error" json:"error"`
 }
 type ErrorDto struct {
 	ErrorCode        string `xml:"errorCode" json:"errorCode"`
 	ErrorDescription string `xml:"errorDescription" json:"errorDescription"`
 }
 type OrderInfosDto struct {
-	OrderInfo *[]OrderInfoDto `xml:"orderInfo" json:"orderInfo"`
+	OrderInfo []OrderInfoDto `xml:"orderInfo" json:"orderInfo"`
 }
 type OrderInfoDto struct {
 	CustomerCode             string        `xml:"customerCode" json:"customerCode"`
@@ -165,7 +165,7 @@ type OrderInfoDto struct {
 	Shippings                *ShippingsDto `xml:"shippings" json:"shippings"`
 }
 type ShippingsDto struct {
-	Shipping *[]ShippingDto `xml:"shipping" json:"shipping"`
+	Shipping []ShippingDto `xml:"shipping" json:"shipping"`
 }
 type ShippingDto struct {
 	LogisticsCode         string         `xml:"logisticsCode" json:"logisticsCode"`
@@ -191,7 +191,7 @@ type ShippingDto struct {
 	Traces                *TracesDto     `xml:"traces" json:"traces"`
 }
 type QueryItemsDto struct {
-	Item *[]QueryItemDto `xml:"item" json:"item"`
+	Item []QueryItemDto `xml:"item" json:"item"`
 }
 type QueryItemDto struct {
 	ItemCode       string  `xml:"itemCode" json:"itemCode"`
@@ -202,7 +202,7 @@ type QueryItemDto struct {
 	Volume         float64 `xml:"volume" json:"volume"`
 }
 type TracesDto struct {
-	Trace *[]TraceDto `xml:"trace" json:"trace"`
+	Trace []TraceDto `xml:"trace" json:"trace"`
 }
 type TraceDto struct {
 	OpTime     string `xml:"opTime" json:"opTime"`

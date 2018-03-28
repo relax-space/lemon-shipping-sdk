@@ -47,7 +47,7 @@ func Test_Create(t *testing.T) {
 				LateDeliveryTime:  "2019-04-06 14:17",
 			},
 			Items: &ItemsDto{
-				&[]ItemDto{
+				[]ItemDto{
 					ItemDto{
 						ItemCode:       "S0000001",
 						ItemName:       "款号1",

@@ -157,7 +157,7 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 	}
 	respDto = &RespQueryDto{
 		RespBase: respCommonDto.RespBase,
-		Info:     &infoDto,
+		Info:     infoDto,
 	}
 
 	code = SUC

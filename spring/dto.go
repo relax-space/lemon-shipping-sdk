@@ -32,7 +32,7 @@ type RespCancelDto struct {
 
 type RespQueryDto struct {
 	*RespBase
-	Info *[]QueryInfoDto `json:"info"`
+	Info []QueryInfoDto `json:"info"`
 }
 type RespCommonDto struct {
 	*RespBase
