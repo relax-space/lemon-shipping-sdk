@@ -31,7 +31,10 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code
 		return
 	}
 	var respCommonDto RespCommonDto
-	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		return nil
+	})
 	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01
@@ -77,7 +80,10 @@ func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (statusCode int, code
 		return
 	}
 	var respCommonDto RespCommonDto
-	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		return nil
+	})
 	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01
@@ -127,7 +133,10 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 		return
 	}
 	var respCommonDto RespCommonDto
-	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, 1)
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		return nil
+	})
 	statusCode, err = req.Call(&respCommonDto)
 	if err != nil {
 		code = E01

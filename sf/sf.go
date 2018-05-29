@@ -29,7 +29,11 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code
 	}
 	respDto = &RespCreateDto{}
 	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
-		base.JoinMapStringEncode(reqParam), httpreq.FormType, httpreq.XmlType).
+		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
+			httpReq.ReqDataType = httpreq.FormType
+			httpReq.RespDataType = httpreq.XmlType
+			return nil
+		}).
 		Call(&respDto)
 	if err != nil {
 		code = E01
@@ -69,8 +73,13 @@ func Route(reqDto *ReqRouteDto, custDto *ReqCustomerDto) (statusCode int, code s
 		"verifyCode": verifyCode,
 	}
 	respDto = &RespRouteDto{}
+
 	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
-		base.JoinMapStringEncode(reqParam), httpreq.FormType, httpreq.XmlType).
+		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
+			httpReq.ReqDataType = httpreq.FormType
+			httpReq.RespDataType = httpreq.XmlType
+			return nil
+		}).
 		Call(&respDto)
 	if err != nil {
 		code = E01
@@ -110,8 +119,13 @@ func Confirm(reqDto *ReqConfirmDto, custDto *ReqCustomerDto) (statusCode int, co
 		"verifyCode": verifyCode,
 	}
 	respDto = &RespConfirmDto{}
+
 	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
-		base.JoinMapStringEncode(reqParam), httpreq.FormType, httpreq.XmlType).
+		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
+			httpReq.ReqDataType = httpreq.FormType
+			httpReq.RespDataType = httpreq.XmlType
+			return nil
+		}).
 		Call(&respDto)
 	if err != nil {
 		code = E01
