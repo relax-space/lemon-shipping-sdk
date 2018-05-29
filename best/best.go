@@ -35,7 +35,11 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code
 
 	data := base.JoinMapString(reqMap)
 
-	req := httpreq.New(http.MethodPost, custDto.Url, data, httpreq.FormType, httpreq.XmlType)
+	req := httpreq.New(http.MethodPost, custDto.Url, data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		httpReq.RespDataType = httpreq.XmlType
+		return nil
+	})
 	statusCode, err = req.Call(&respDto)
 	if err != nil {
 		code = E01
@@ -75,7 +79,11 @@ func Cancel(reqDto *ReqCancelDto, custDto *ReqCustomerDto) (statusCode int, code
 	reqMap["sign"] = reqDto.Sign
 
 	data := base.JoinMapString(reqMap)
-	req := httpreq.New(http.MethodPost, custDto.Url, data, httpreq.FormType, httpreq.XmlType)
+	req := httpreq.New(http.MethodPost, custDto.Url, data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		httpReq.RespDataType = httpreq.XmlType
+		return nil
+	})
 	statusCode, err = req.Call(&respDto)
 	if err != nil {
 		code = E01
@@ -116,7 +124,11 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 	reqMap["sign"] = reqDto.Sign
 
 	data := base.JoinMapString(reqMap)
-	req := httpreq.New(http.MethodPost, custDto.Url, data, httpreq.FormType, httpreq.XmlType)
+	req := httpreq.New(http.MethodPost, custDto.Url, data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		httpReq.RespDataType = httpreq.XmlType
+		return nil
+	})
 	statusCode, err = req.Call(&respDto)
 	if err != nil {
 		code = E01
