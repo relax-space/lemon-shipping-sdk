@@ -46,20 +46,18 @@ func Test_Create(t *testing.T) {
 				EarlyDeliveryTime: "2018-04-06 14:17",
 				LateDeliveryTime:  "2019-04-06 14:17",
 			},
-			Items: &ItemsDto{
-				[]ItemDto{
-					ItemDto{
-						ItemCode:       "S0000001",
-						ItemName:       "款号1",
-						PackageCount:   2,
-						PackageUomCode: "件",
-					},
-					ItemDto{
-						ItemCode:       "S0000002",
-						ItemName:       "款号2",
-						PackageCount:   5,
-						PackageUomCode: "件",
-					},
+			Items: []ItemDto{
+				ItemDto{
+					ItemCode:       "S0000001",
+					ItemName:       "款号1",
+					PackageCount:   2,
+					PackageUomCode: "件",
+				},
+				ItemDto{
+					ItemCode:       "S0000002",
+					ItemName:       "款号2",
+					PackageCount:   5,
+					PackageUomCode: "件",
 				},
 			},
 		},

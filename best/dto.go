@@ -20,8 +20,8 @@ type ReqQueryDto struct {
 
 type RespQueryDto struct {
 	Result     bool           `xml:"result" json:"result"`
-	Errors     *ErrorsDto     `xml:"errors" json:"errors"`
-	OrderInfos *OrderInfosDto `xml:"orderInfos" json:"orderInfos"`
+	Errors     []ErrorDto     `xml:"errors>error" json:"errors"`
+	OrderInfos []OrderInfoDto `xml:"orderInfos>orderInfo" json:"orderInfos"`
 }
 
 type ReqPushDto struct {
@@ -35,7 +35,7 @@ type ReqPushDto struct {
 	CurrentStatusDescription string        `xml:"currentStatusDescription" json:"currentStatusDescription"`
 	CurrentStatusUpdator     string        `xml:"currentStatusUpdator" json:"currentStatusUpdator"`
 	PortalUrl                string        `xml:"portalUrl" json:"portalUrl"`
-	Shippings                *ShippingsDto `xml:"shippings" json:"shippings"`
+	Shippings                []ShippingDto `xml:"shippings>shipping" json:"shippings"`
 }
 
 //dto
@@ -67,8 +67,8 @@ type CreateContentDto struct {
 	Value           string       `xml:"value" json:"value,omitempty"`
 	Sender          *SenderDto   `xml:"sender" json:"sender,omitempty"`
 	Receiver        *ReceiverDto `xml:"receiver" json:"receiver,omitempty"`
-	Services        *ServicesDto `xml:"services" json:"services,omitempty"`
-	Items           *ItemsDto    `xml:"items" json:"items,omitempty"`
+	Services        []ServiceDto `xml:"services>service" json:"services,omitempty"`
+	Items           []ItemDto    `xml:"items>item" json:"items,omitempty"`
 }
 
 type ReceiverDto struct {
@@ -94,20 +94,13 @@ type SenderDto struct {
 	LatePickupTime  string `xml:"latePickupTime" json:"latePickupTime,omitempty"`
 }
 type ServiceDto struct {
-	ServiceDefinitionCode string       `xml:"serviceDefinitionCode" json:"serviceDefinitionCode,omitempty"`
-	Remark                string       `xml:"remark" json:"remark,omitempty"`
-	ServiceCodes          *ServicesDto `xml:"serviceCodes" json:"serviceCodes,omitempty"`
-}
-type ServicesDto struct {
-	Service []ServiceCodeDto `xml:"service" json:"service,omitempty"`
+	ServiceDefinitionCode string           `xml:"serviceDefinitionCode" json:"serviceDefinitionCode,omitempty"`
+	Remark                string           `xml:"remark" json:"remark,omitempty"`
+	ServiceCodes          []ServiceCodeDto `xml:"serviceCodes>serviceCode" json:"serviceCodes,omitempty"`
 }
 type ServiceCodeDto struct {
-	ServiceDefinitionCode string `xml:"serviceDefinitionCode" json:"serviceDefinitionCode,omitempty"`
-	ActualValue           string `xml:"actualValue" json:"actualValue,omitempty"`
-}
-
-type ItemsDto struct {
-	Item []ItemDto `xml:"item" json:"item,omitempty"`
+	ServiceDefParameterCode string `xml:"serviceDefParameterCode" json:"serviceDefParameterCode,omitempty"`
+	ActualValue             string `xml:"actualValue" json:"actualValue,omitempty"`
 }
 type ItemDto struct {
 	LineNo         string  `xml:"lineNo" json:"lineNo,omitempty"`
@@ -140,15 +133,9 @@ type ReqCustomerDto struct {
 	Url string `xml:"url" json:"url,omitempty"`
 }
 
-type ErrorsDto struct {
-	Error []ErrorDto `xml:"error" json:"error"`
-}
 type ErrorDto struct {
 	ErrorCode        string `xml:"errorCode" json:"errorCode"`
 	ErrorDescription string `xml:"errorDescription" json:"errorDescription"`
-}
-type OrderInfosDto struct {
-	OrderInfo []OrderInfoDto `xml:"orderInfo" json:"orderInfo"`
 }
 type OrderInfoDto struct {
 	CustomerCode             string        `xml:"customerCode" json:"customerCode"`
@@ -162,11 +149,9 @@ type OrderInfoDto struct {
 	CurrentStatusDescription string        `xml:"currentStatusDescription" json:"currentStatusDescription"`
 	CurrentStatusUpdator     string        `xml:"currentStatusUpdator" json:"currentStatusUpdator"`
 	PortalUrl                string        `xml:"portalUrl" json:"portalUrl"`
-	Shippings                *ShippingsDto `xml:"shippings" json:"shippings"`
+	Shippings                []ShippingDto `xml:"shippings>shipping" json:"shippings"`
 }
-type ShippingsDto struct {
-	Shipping []ShippingDto `xml:"shipping" json:"shipping"`
-}
+
 type ShippingDto struct {
 	LogisticsCode         string         `xml:"logisticsCode" json:"logisticsCode"`
 	LogisticsName         string         `xml:"logisticsName" json:"logisticsName"`
@@ -187,12 +172,10 @@ type ShippingDto struct {
 	GoodsValue            float64        `xml:"goodsValue" json:"goodsValue"`
 	CheapAmount           float64        `xml:"cheapAmount" json:"cheapAmount"`
 	CodPayType            string         `xml:"codPayType" json:"codPayType"`
-	Items                 *QueryItemsDto `xml:"items" json:"items"`
-	Traces                *TracesDto     `xml:"traces" json:"traces"`
+	Items                 []QueryItemDto `xml:"items>item" json:"items"`
+	Traces                []TraceDto     `xml:"traces>trace" json:"traces"`
 }
-type QueryItemsDto struct {
-	Item []QueryItemDto `xml:"item" json:"item"`
-}
+
 type QueryItemDto struct {
 	ItemCode       string  `xml:"itemCode" json:"itemCode"`
 	ItemName       string  `xml:"itemName" json:"itemName"`
@@ -200,9 +183,6 @@ type QueryItemDto struct {
 	Count          int64   `xml:"count" json:"count"`
 	Weight         float64 `xml:"weight" json:"weight"`
 	Volume         float64 `xml:"volume" json:"volume"`
-}
-type TracesDto struct {
-	Trace []TraceDto `xml:"trace" json:"trace"`
 }
 type TraceDto struct {
 	OpTime     string `xml:"opTime" json:"opTime"`
