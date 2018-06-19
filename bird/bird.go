@@ -54,3 +54,48 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 	code = SUC
 	return
 }
+
+func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespCreateDto, err error) {
+	b, err := json.Marshal(reqDto.RequestData)
+	if err != nil {
+		code = E02
+		return
+	}
+	signParam := string(b) + custDto.ApiKey
+	reqDto.DataSign, err = signBird(signParam)
+	if err != nil {
+		code = E02
+		return
+	}
+	reqMap := make(map[string]string, 0)
+	reqMap["EBusinessID"] = reqDto.EBusinessId
+	reqMap["RequestType"] = reqDto.RequestType
+	reqMap["DataSign"] = reqDto.DataSign
+	reqMap["DataType"] = reqDto.DataType
+	reqMap["RequestData"] = url.QueryEscape(string(b))
+
+	data := base.JoinMapString(reqMap)
+	req := httpreq.New(http.MethodPost, custDto.Url, data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		httpReq.RespDataType = httpreq.JsonType
+		return nil
+	})
+	statusCode, err = req.Call(&respDto)
+	if err != nil {
+		code = E01
+		return
+	}
+	if statusCode != http.StatusOK {
+		code = E01
+		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
+		return
+	}
+	if respDto.Success != true {
+		code = E03
+		err = fmt.Errorf("%v", respDto.Reason)
+		return
+	}
+
+	code = SUC
+	return
+}
