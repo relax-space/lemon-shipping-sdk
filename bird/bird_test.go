@@ -83,28 +83,28 @@ func Test_Create(t *testing.T) {
 			Quantity: 1,
 			Volume:   0,
 			Remark:   "小心轻放",
-			Commodity: []struct {
-				GoodsName     string  `json:"GoodsName,omitempty"`
-				GoodsCode     string  `json:"GoodsCode,omitempty"`
-				Goodsquantity int     `json:"Goodsquantity,omitempty"`
-				GoodsPrice    float64 `json:"GoodsPrice,omitempty"`
-				GoodsWeight   float64 `json:"GoodsWeight,omitempty"`
+			Commoditys: []Commodity{
+				Commodity{
+					GoodsName:     "鞋子",
+					GoodsCode:     "",
+					Goodsquantity: 1,
+					GoodsPrice:    0,
+					GoodsWeight:   1,
 
-				GoodsDesc string  `json:"GoodsDesc,omitempty"`
-				GoodsVol  float64 `json:"GoodsVol,omitempty"`
-			}{
-				{"鞋子", "", 1, 0, 1, "", 0},
+					GoodsDesc: "",
+					GoodsVol:  0,
+				},
 			},
-			AddService: []struct {
-				Name       string `json:"Name,omitempty"`
-				Value      string `json:"Value,omitempty"`
-				CustomerId string `json:"CustomerID,omitempty"`
-			}{
-				{"COD", "1020", "1234"},
+			AddService: []AddService{
+				AddService{
+					Name:       "COD",
+					Value:      "1020",
+					CustomerId: "1234",
+				},
 			},
 		},
 	}
-
+	spew.Dump(reqDto)
 	_, _, respDto, err := Create(reqDto, custDto)
 	spew.Dump(respDto)
 	test.Ok(t, err)
