@@ -76,21 +76,25 @@ type ReqCreateDataDto struct {
 	Volume   float64 `json:"Volume,omitempty"`
 	Remark   string  `json:"Remark,omitempty"`
 
-	AddService []struct {
-		Name       string `json:"Name,omitempty"`
-		Value      string `json:"Value,omitempty"`
-		CustomerId string `json:"CustomerID,omitempty"`
-	} `json:"AddService,omitempty"`
-	Commodity []struct {
-		GoodsName     string  `json:"GoodsName,omitempty"`
-		GoodsCode     string  `json:"GoodsCode,omitempty"`
-		Goodsquantity int     `json:"Goodsquantity,omitempty"`
-		GoodsPrice    float64 `json:"GoodsPrice,omitempty"`
-		GoodsWeight   float64 `json:"GoodsWeight,omitempty"`
+	AddService []AddService `json:"AddService,omitempty"`
+	Commoditys []Commodity  `json:"Commodity,omitempty"`
+}
 
-		GoodsDesc string  `json:"GoodsDesc,omitempty"`
-		GoodsVol  float64 `json:"GoodsVol,omitempty"`
-	} `json:"Commodity,omitempty"`
+type AddService struct {
+	Name       string `json:"Name,omitempty"`
+	Value      string `json:"Value,omitempty"`
+	CustomerId string `json:"CustomerID,omitempty"`
+}
+
+type Commodity struct {
+	GoodsName     string  `json:"GoodsName,omitempty"`
+	GoodsCode     string  `json:"GoodsCode,omitempty"`
+	Goodsquantity int     `json:"Goodsquantity,omitempty"`
+	GoodsPrice    float64 `json:"GoodsPrice,omitempty"`
+	GoodsWeight   float64 `json:"GoodsWeight,omitempty"`
+
+	GoodsDesc string  `json:"GoodsDesc,omitempty"`
+	GoodsVol  float64 `json:"GoodsVol,omitempty"`
 }
 
 type Receiver struct {
