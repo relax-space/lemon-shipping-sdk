@@ -194,10 +194,10 @@ type ReqSubscribeDataDto struct {
 }
 
 type ReqPushDataDto struct {
-	EBusinessId string       `json:"EBusinessID,omitempty"`
-	PushTime    string       `json:"PushTime,omitempty"`
-	Count       string       `json:"Count,omitempty"`
-	Data        *PushDataDto `json:"Data,omitempty"`
+	EBusinessId string        `json:"EBusinessID,omitempty"`
+	PushTime    string        `json:"PushTime,omitempty"`
+	Count       string        `json:"Count,omitempty"`
+	Data        []PushDataDto `json:"Data,omitempty"`
 }
 type PushDataDto struct {
 	EBusinessId           string  `json:"EBusinessID,omitempty"`
