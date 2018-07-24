@@ -21,6 +21,10 @@ type ReqPushDto struct {
 	DataSign    string          `json:"DataSign,omitempty"`
 	RequestData *ReqPushDataDto `json:"RequestData,omitempty"`
 }
+type ReqRecognizeDto struct {
+	*ReqBase
+	RequestData *ReqRecognizeDataDto `json:"RequestData,omitempty"`
+}
 
 type RespQueryDto struct {
 	EBusinessId  string `json:"EBusinessID,omitempty"`
@@ -53,6 +57,13 @@ type RespPushDto struct {
 	UpdateTime  string `json:"UpdateTime,omitempty"`
 	Success     bool   `json:"Success,omitempty"`
 	Reason      string `json:"Reason,omitempty"`
+}
+type RespRecognizeDto struct {
+	EBusinessId  string    `json:"EBusinessID,omitempty"`
+	LogisticCode string    `json:"LogisticCode,omitempty"`
+	Success      bool      `json:"Success,omitempty"`
+	Code         int       `json:"Code,omitempty"`
+	Shipper      []Shipper `json:"Shipper,omitempty"`
 }
 
 /*
@@ -209,4 +220,12 @@ type PushDataDto struct {
 	CallBack              string  `json:"CallBack,omitempty"`
 	Traces                []Trace `json:"Traces,omitempty"`
 	EstimatedDeliveryTime string  `json:"EstimatedDeliveryTime,omitempty"`
+}
+
+type ReqRecognizeDataDto struct {
+	LogisticCode string `json:"LogisticCode,omitempty"`
+}
+type Shipper struct {
+	ShipperCode string `json:"ShipperCode,omitempty"`
+	ShipperName string `json:"ShipperName,omitempty"`
 }

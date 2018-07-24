@@ -108,7 +108,6 @@ func Test_Create(t *testing.T) {
 	spew.Dump(respDto)
 	test.Ok(t, err)
 }
-
 func Test_Subscribe(t *testing.T) {
 	custDto := &ReqCustomerDto{
 		Url:    os.Getenv("BIRD_URL"),
@@ -169,6 +168,27 @@ func Test_Subscribe(t *testing.T) {
 	}
 	spew.Dump(reqDto)
 	_, _, respDto, err := Subscribe(reqDto, custDto)
+	spew.Dump(respDto)
+	test.Ok(t, err)
+}
+
+func Test_Recognize(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url:    os.Getenv("BIRD_URL"),
+		ApiKey: os.Getenv("BIRD_APIKEY"),
+	}
+	reqDto := &ReqRecognizeDto{
+		ReqBase: &ReqBase{
+			EBusinessId: os.Getenv("BIRD_EBusinessId"),
+			RequestType: "2002",
+			DataType:    "2",
+		},
+		RequestData: &ReqRecognizeDataDto{
+			LogisticCode: "51080222000604",
+		},
+	}
+	spew.Dump(reqDto)
+	_, _, respDto, err := Recognize(reqDto, custDto)
 	spew.Dump(respDto)
 	test.Ok(t, err)
 }
