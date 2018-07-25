@@ -63,7 +63,7 @@ type RespRecognizeDto struct {
 	LogisticCode string    `json:"LogisticCode,omitempty"`
 	Success      bool      `json:"Success,omitempty"`
 	Code         int       `json:"Code,omitempty"`
-	Shipper      []Shipper `json:"Shipper,omitempty"`
+	Shippers     []Shipper `json:"Shippers,omitempty"`
 }
 
 /*
