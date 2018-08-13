@@ -18,7 +18,6 @@ func Test_signBird(t *testing.T) {
 	test.Ok(t, err)
 	test.Equals(t, "OWFhM2I5N2ViM2U2MGRkMjc4YzU2NmVlZWI3ZDk0MmE=", nd)
 }
-
 func Test_Query(t *testing.T) {
 	custDto := &ReqCustomerDto{
 		Url:    os.Getenv("BIRD_URL"),
@@ -94,7 +93,7 @@ func Test_Create(t *testing.T) {
 					GoodsVol:  0,
 				},
 			},
-			AddService: []AddService{
+			AddServices: []AddService{
 				AddService{
 					Name:       "COD",
 					Value:      "1020",
@@ -157,7 +156,7 @@ func Test_Subscribe(t *testing.T) {
 					GoodsVol:  0,
 				},
 			},
-			AddService: []AddService{
+			AddServices: []AddService{
 				AddService{
 					Name:       "COD",
 					Value:      "1020",
@@ -171,7 +170,6 @@ func Test_Subscribe(t *testing.T) {
 	spew.Dump(respDto)
 	test.Ok(t, err)
 }
-
 func Test_Recognize(t *testing.T) {
 	custDto := &ReqCustomerDto{
 		Url:    os.Getenv("BIRD_URL"),
@@ -189,6 +187,123 @@ func Test_Recognize(t *testing.T) {
 	}
 	spew.Dump(reqDto)
 	_, _, respDto, err := Recognize(reqDto, custDto)
+	spew.Dump(respDto)
+	test.Ok(t, err)
+}
+func Test_ECreate(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url:    os.Getenv("BIRD_URL"),
+		ApiKey: os.Getenv("BIRD_APIKEY"),
+	}
+	reqDto := &ReqECreateDto{
+		ReqBase: &ReqBase{
+			EBusinessId: os.Getenv("BIRD_EBusinessId"),
+			RequestType: "1007",
+			DataType:    "2",
+		},
+		RequestData: &ReqECreateDataDto{
+			OrderCode:   "1234560",
+			ShipperCode: "HTKY",
+			PayType:     1,
+			ExpType:     1,
+			Cost:        1,
+			OtherCost:   1,
+			Sender: &Sender{
+				Company:      "LV",
+				Name:         "Taylor",
+				Mobile:       "15018442396",
+				ProvinceName: "上海",
+				CityName:     "上海市",
+				ExpAreaName:  "青浦区",
+				Address:      "明珠路",
+			},
+			Receiver: &Receiver{
+				Company:      "GCCUI",
+				Name:         "Yann",
+				Mobile:       "15018442396",
+				ProvinceName: "北京",
+				CityName:     "北京市",
+				ExpAreaName:  "朝阳区",
+				Address:      "三里屯街道",
+			},
+			Weight:                1,
+			Quantity:              1,
+			Volume:                0,
+			Remark:                "小心轻放",
+			IsReturnPrintTemplate: "0",
+			Commoditys: []Commodity{
+				Commodity{
+					GoodsName:     "鞋子",
+					GoodsCode:     "",
+					Goodsquantity: 1,
+					GoodsPrice:    0,
+					GoodsWeight:   1,
+
+					GoodsDesc: "",
+					GoodsVol:  0,
+				},
+			},
+			AddServices: []AddService{
+				AddService{
+					Name:       "COD",
+					Value:      "1020",
+					CustomerId: "1234",
+				},
+			},
+		},
+	}
+	// spew.Dump(reqDto)
+	_, _, respDto, err := ECreate(reqDto, custDto)
+	spew.Dump(respDto)
+	test.Ok(t, err)
+}
+func Test_ECancel(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url:    os.Getenv("BIRD_URL"),
+		ApiKey: os.Getenv("BIRD_APIKEY"),
+	}
+	reqDto := &ReqECancelDto{
+		ReqBase: &ReqBase{
+			EBusinessId: os.Getenv("BIRD_EBusinessId"),
+			RequestType: "1147",
+			DataType:    "2",
+		},
+		RequestData: &ReqECancelDataDto{
+			OrderCode:    "012657700387",
+			ShipperCode:  "HTKY",
+			ExpNo:        "900008664480",
+			CustomerName: "80238728",
+			CustomerPwd:  "c0bfe0ba86b66bae5426303c53db0a8b",
+		},
+	}
+	// spew.Dump(reqDto)
+	spew.Dump(os.Getenv("BIRD_EBusinessId"))
+	_, _, respDto, err := ECancel(reqDto, custDto)
+	spew.Dump(respDto)
+	test.Ok(t, err)
+}
+func Test_EAvailableNum(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url:    os.Getenv("BIRD_URL"),
+		ApiKey: os.Getenv("BIRD_APIKEY"),
+	}
+	reqDto := &ReqEAvailableNumDto{
+		ReqBase: &ReqBase{
+			EBusinessId: os.Getenv("BIRD_EBusinessId"),
+			RequestType: "1127",
+			DataType:    "2",
+		},
+		RequestData: &ReqEAvailableNumDataDto{
+			ShipperCode:  "UC",
+			CustomerName: "80238728",
+			CustomerPwd:  "c0bfe0ba86b66bae5426303c53db0a81",
+			StationCode:  "3001",
+			StationName:  "福田网点",
+		},
+	}
+	// spew.Dump(reqDto)
+	spew.Dump(os.Getenv("BIRD_EBusinessId"))
+	_, _, respDto, err := EAvailableNum(reqDto, custDto)
 	spew.Dump(respDto)
 	test.Ok(t, err)
 }

@@ -25,6 +25,18 @@ type ReqRecognizeDto struct {
 	*ReqBase
 	RequestData *ReqRecognizeDataDto `json:"RequestData,omitempty"`
 }
+type ReqECreateDto struct {
+	*ReqBase
+	RequestData *ReqECreateDataDto `json:"RequestData,omitempty"`
+}
+type ReqECancelDto struct {
+	*ReqBase
+	RequestData *ReqECancelDataDto `json:"RequestData,omitempty"`
+}
+type ReqEAvailableNumDto struct {
+	*ReqBase
+	RequestData *ReqEAvailableNumDataDto `json:"RequestData,omitempty"`
+}
 
 type RespQueryDto struct {
 	EBusinessId  string `json:"EBusinessID,omitempty"`
@@ -65,6 +77,37 @@ type RespRecognizeDto struct {
 	Code         int       `json:"Code,omitempty"`
 	Shippers     []Shipper `json:"Shippers,omitempty"`
 }
+type RespECreateDto struct {
+	EBusinessId           string     `json:"EBusinessID,omitempty"`
+	Order                 *ReqEOrder `json:"Order,omitempty"`
+	Success               bool       `json:"Success,omitempty"`
+	ResultCode            string     `json:"ResultCode,omitempty"`
+	Reason                string     `json:"Reason,omitempty"`
+	UniquerRequestNumber  string     `json:"UniquerRequestNumber,omitempty"`
+	PrintTemplate         string     `json:"PrintTemplate,omitempty"`
+	EstimatedDeliveryTime string     `json:"EstimatedDeliveryTime,omitempty"`
+	Callback              string     `json:"Callback,omitempty"`
+	// SubCount              int        `json:"SubCount,omitempty"`
+	// SubOrders             string     `json:"SubOrders,omitempty"`
+	// SubPrintTemplates     string     `json:"SubPrintTemplates,omitempty"`
+	SignBillPrintTemplate string `json:"SignBillPrintTemplate"`
+	ReceiverSafePhone     string `json:"ReceiverSafePhone"`
+	SenderSafePhone       string `json:"SenderSafePhone"`
+	DialPage              string `json:"DialPage"`
+}
+type RespECancelDto struct {
+	EBusinessId string `json:"EBusinessID,omitempty"`
+	Success     bool   `json:"Success,omitempty"`
+	ResultCode  string `json:"ResultCode,omitempty"`
+	Reason      string `json:"Reason,omitempty"`
+}
+type RespEAvailableNumDto struct {
+	EBusinessId   string         `json:"EBusinessID,omitempty"`
+	Success       bool           `json:"Success,omitempty"`
+	ResultCode    string         `json:"ResultCode,omitempty"`
+	Reason        string         `json:"Reason,omitempty"`
+	EorderBalance *EorderBalance `json:"EorderBalance,omitempty"`
+}
 
 /*
 dto
@@ -80,6 +123,18 @@ type ReqOrder struct {
 	OrderCode    string `json:"OrderCode,omitempty"`
 	ShipperCode  string `json:"ShipperCode,omitempty"`
 	LogisticCode string `json:"LogisticCode,omitempty"`
+}
+type ReqEOrder struct {
+	OrderCode       string `json:"OrderCode,omitempty"`
+	ShipperCode     string `json:"ShipperCode,omitempty"`
+	LogisticCode    string `json:"LogisticCode,omitempty"`
+	MarkDestination string `json:"MarkDestination,omitempty"`
+	OriginCode      string `json:"OriginCode,omitempty"`
+	OriginName      string `json:"OriginName,omitempty"`
+	DestinatioCode  string `json:"DestinatioCode,omitempty"`
+	DestinatioName  string `json:"DestinatioName,omitempty"`
+	SortingCode     string `json:"SortingCode,omitempty"`
+	PackageCode     string `json:"PackageCode,omitempty"`
 }
 
 type ReqCreateDataDto struct {
@@ -107,8 +162,8 @@ type ReqCreateDataDto struct {
 	Volume   float64 `json:"Volume,omitempty"`
 	Remark   string  `json:"Remark,omitempty"`
 
-	AddService []AddService `json:"AddService,omitempty"`
-	Commoditys []Commodity  `json:"Commodity,omitempty"`
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
 }
 
 type AddService struct {
@@ -200,8 +255,8 @@ type ReqSubscribeDataDto struct {
 	Remark        string  `json:"Remark,omitempty"`
 	IsSendMessage int     `json:"IsSendMessage,omitempty"`
 
-	AddService []AddService `json:"AddService,omitempty"`
-	Commoditys []Commodity  `json:"Commodity,omitempty"`
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
 }
 
 type ReqPushDataDto struct {
@@ -228,4 +283,60 @@ type ReqRecognizeDataDto struct {
 type Shipper struct {
 	ShipperCode string `json:"ShipperCode,omitempty"`
 	ShipperName string `json:"ShipperName,omitempty"`
+}
+
+type ReqECreateDataDto struct {
+	CallBack     string  `json:"CallBack,omitempty"`
+	MemberId     string  `json:"MemberID,omitempty"`
+	CustomerName string  `json:"CustomerName,omitempty"`
+	CustomerPwd  string  `json:"CustomerPwd,omitempty"`
+	SendSite     string  `json:"SendSite,omitempty"`
+	ShipperCode  string  `json:"ShipperCode,omitempty"`
+	LogisticCode string  `json:"LogisticCode,omitempty"`
+	OrderCode    string  `json:"OrderCode,omitempty"`
+	ThrOrderCode string  `json:"ThrOrderCode,omitempty"`
+	MonthCode    string  `json:"MonthCode,omitempty"`
+	PayType      int     `json:"PayType,omitempty"`
+	ExpType      int     `json:"ExpType,omitempty"`
+	IsNotice     int     `json:"IsNotice,omitempty"`
+	Cost         float64 `json:"Cost,omitempty"`
+	OtherCost    float64 `json:"OtherCost,omitempty"`
+
+	Receiver *Receiver `json:"Receiver,omitempty"`
+	Sender   *Sender   `json:"Sender,omitempty"`
+
+	StartDate string  `json:"StartDate,omitempty"`
+	EndDate   string  `json:"EndDate,omitempty"`
+	Weight    float64 `json:"Weight,omitempty"`
+	Quantity  int     `json:"Quantity,omitempty"`
+	Volume    float64 `json:"Volume,omitempty"`
+	Remark    string  `json:"Remark,omitempty"`
+
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
+
+	IsReturnPrintTemplate string `json:"IsReturnPrintTemplate,omitempty"`
+	IsSendMessage         int    `json:"IsSendMessage,omitempty"`
+	TemplateSize          string `json:"TemplateSize,omitempty"`
+}
+
+type ReqECancelDataDto struct {
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	ExpNo        string `json:"ExpNo,omitempty"`
+	CustomerName string `json:"CustomerName,omitempty"`
+	CustomerPwd  string `json:"CustomerPwd,omitempty"`
+}
+
+type ReqEAvailableNumDataDto struct {
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	CustomerName string `json:"CustomerName,omitempty"`
+	CustomerPwd  string `json:"CustomerPwd,omitempty"`
+	StationCode  string `json:"StationCode,omitempty"`
+	StationName  string `json:"StationName,omitempty"`
+}
+
+type EorderBalance struct {
+	TotalNum     int `json:"TotalNum,omitempty"`
+	AvailableNum int `json:"AvailableNum,omitempty"`
 }
