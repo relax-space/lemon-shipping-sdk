@@ -6,337 +6,337 @@ request or response parameter
 
 type ReqQueryDto struct {
 	*ReqBase
-	RequestData *ReqQueryDataDto `json:"requestData,omitempty"`
+	RequestData *ReqQueryDataDto `json:"RequestData,omitempty"`
 }
 type ReqCreateDto struct {
 	*ReqBase
-	RequestData *ReqCreateDataDto `json:"requestData,omitempty"`
+	RequestData *ReqCreateDataDto `json:"RequestData,omitempty"`
 }
 type ReqSubscribeDto struct {
 	*ReqBase
-	RequestData *ReqSubscribeDataDto `json:"requestData,omitempty"`
+	RequestData *ReqSubscribeDataDto `json:"RequestData,omitempty"`
 }
 type ReqPushDto struct {
-	RequestType string          `json:"requestType,omitempty"`
-	DataSign    string          `json:"dataSign,omitempty"`
-	RequestData *ReqPushDataDto `json:"requestData,omitempty"`
+	RequestType string          `json:"RequestType,omitempty"`
+	DataSign    string          `json:"DataSign,omitempty"`
+	RequestData *ReqPushDataDto `json:"RequestData,omitempty"`
 }
 type ReqRecognizeDto struct {
 	*ReqBase
-	RequestData *ReqRecognizeDataDto `json:"requestData,omitempty"`
+	RequestData *ReqRecognizeDataDto `json:"RequestData,omitempty"`
 }
 type ReqECreateDto struct {
 	*ReqBase
-	RequestData *ReqECreateDataDto `json:"requestData,omitempty"`
+	RequestData *ReqECreateDataDto `json:"RequestData,omitempty"`
 }
 type ReqECancelDto struct {
 	*ReqBase
-	RequestData *ReqECancelDataDto `json:"requestData,omitempty"`
+	RequestData *ReqECancelDataDto `json:"RequestData,omitempty"`
 }
 type ReqEAvailableNumDto struct {
 	*ReqBase
-	RequestData *ReqEAvailableNumDataDto `json:"requestData,omitempty"`
+	RequestData *ReqEAvailableNumDataDto `json:"RequestData,omitempty"`
 }
 
 type RespQueryDto struct {
-	EBusinessId  string `json:"eBusinessID,omitempty"`
-	OrderCode    string `json:"orderCode,omitempty"`
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	LogisticCode string `json:"logisticCode,omitempty"`
-	Success      bool   `json:"success,omitempty"`
+	EBusinessId  string `json:"EBusinessID,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
+	Success      bool   `json:"Success,omitempty"`
 
-	Reason string  `json:"reason,omitempty"`
-	State  string  `json:"state,omitempty"`
-	Traces []Trace `json:"traces,omitempty"`
+	Reason string  `json:"Reason,omitempty"`
+	State  string  `json:"State,omitempty"`
+	Traces []Trace `json:"Traces,omitempty"`
 }
 type RespCreateDto struct {
-	EBusinessId          string    `json:"eBusinessID,omitempty"`
-	Order                *ReqOrder `json:"order,omitempty"`
-	Success              bool      `json:"success,omitempty"`
-	ResultCode           string    `json:"resultCode,omitempty"`
-	Reason               string    `json:"reason,omitempty"`
-	UniquerRequestNumber string    `json:"uniquerRequestNumber,omitempty"`
+	EBusinessId          string    `json:"EBusinessID,omitempty"`
+	Order                *ReqOrder `json:"Order,omitempty"`
+	Success              bool      `json:"Success,omitempty"`
+	ResultCode           string    `json:"ResultCode,omitempty"`
+	Reason               string    `json:"Reason,omitempty"`
+	UniquerRequestNumber string    `json:"UniquerRequestNumber,omitempty"`
 }
 type RespSubscribeDto struct {
-	EBusinessId           string `json:"eBusinessID,omitempty"`
-	UpdateTime            string `json:"updateTime,omitempty"`
-	Success               bool   `json:"success,omitempty"`
-	Reason                string `json:"reason,omitempty"`
-	EstimatedDeliveryTime string `json:"estimatedDeliveryTime,omitempty"`
+	EBusinessId           string `json:"EBusinessID,omitempty"`
+	UpdateTime            string `json:"UpdateTime,omitempty"`
+	Success               bool   `json:"Success,omitempty"`
+	Reason                string `json:"Reason,omitempty"`
+	EstimatedDeliveryTime string `json:"EstimatedDeliveryTime,omitempty"`
 }
 type RespPushDto struct {
-	EBusinessId string `json:"eBusinessID,omitempty"`
-	UpdateTime  string `json:"updateTime,omitempty"`
-	Success     bool   `json:"success,omitempty"`
-	Reason      string `json:"reason,omitempty"`
+	EBusinessId string `json:"EBusinessID,omitempty"`
+	UpdateTime  string `json:"UpdateTime,omitempty"`
+	Success     bool   `json:"Success,omitempty"`
+	Reason      string `json:"Reason,omitempty"`
 }
 type RespRecognizeDto struct {
-	EBusinessId  string    `json:"eBusinessID,omitempty"`
-	LogisticCode string    `json:"logisticCode,omitempty"`
-	Success      bool      `json:"success,omitempty"`
-	Code         int       `json:"code,omitempty"`
-	Shippers     []Shipper `json:"shippers,omitempty"`
+	EBusinessId  string    `json:"EBusinessID,omitempty"`
+	LogisticCode string    `json:"LogisticCode,omitempty"`
+	Success      bool      `json:"Success,omitempty"`
+	Code         int       `json:"Code,omitempty"`
+	Shippers     []Shipper `json:"Shippers,omitempty"`
 }
 type RespECreateDto struct {
-	EBusinessId           string     `json:"eBusinessID,omitempty"`
-	Order                 *ReqEOrder `json:"order,omitempty"`
-	Success               bool       `json:"success,omitempty"`
-	ResultCode            string     `json:"resultCode,omitempty"`
-	Reason                string     `json:"reason,omitempty"`
-	UniquerRequestNumber  string     `json:"uniquerRequestNumber,omitempty"`
-	PrintTemplate         string     `json:"printTemplate,omitempty"`
-	EstimatedDeliveryTime string     `json:"estimatedDeliveryTime,omitempty"`
-	Callback              string     `json:"callback,omitempty"`
+	EBusinessId           string     `json:"EBusinessID,omitempty"`
+	Order                 *ReqEOrder `json:"Order,omitempty"`
+	Success               bool       `json:"Success,omitempty"`
+	ResultCode            string     `json:"ResultCode,omitempty"`
+	Reason                string     `json:"Reason,omitempty"`
+	UniquerRequestNumber  string     `json:"UniquerRequestNumber,omitempty"`
+	PrintTemplate         string     `json:"PrintTemplate,omitempty"`
+	EstimatedDeliveryTime string     `json:"EstimatedDeliveryTime,omitempty"`
+	Callback              string     `json:"Callback,omitempty"`
 	// SubCount              int        `json:"SubCount,omitempty"`
 	// SubOrders             string     `json:"SubOrders,omitempty"`
 	// SubPrintTemplates     string     `json:"SubPrintTemplates,omitempty"`
-	SignBillPrintTemplate string `json:"signBillPrintTemplate"`
-	ReceiverSafePhone     string `json:"receiverSafePhone"`
-	SenderSafePhone       string `json:"senderSafePhone"`
-	DialPage              string `json:"dialPage"`
+	SignBillPrintTemplate string `json:"SignBillPrintTemplate"`
+	ReceiverSafePhone     string `json:"ReceiverSafePhone"`
+	SenderSafePhone       string `json:"SenderSafePhone"`
+	DialPage              string `json:"DialPage"`
 }
 type RespECancelDto struct {
-	EBusinessId string `json:"eBusinessID,omitempty"`
-	Success     bool   `json:"success,omitempty"`
-	ResultCode  string `json:"resultCode,omitempty"`
-	Reason      string `json:"reason,omitempty"`
+	EBusinessId string `json:"EBusinessID,omitempty"`
+	Success     bool   `json:"Success,omitempty"`
+	ResultCode  string `json:"ResultCode,omitempty"`
+	Reason      string `json:"Reason,omitempty"`
 }
 type RespEAvailableNumDto struct {
-	EBusinessId   string         `json:"eBusinessID,omitempty"`
-	Success       bool           `json:"success,omitempty"`
-	ResultCode    string         `json:"resultCode,omitempty"`
-	Reason        string         `json:"reason,omitempty"`
-	EorderBalance *EorderBalance `json:"eorderBalance,omitempty"`
+	EBusinessId   string         `json:"EBusinessID,omitempty"`
+	Success       bool           `json:"Success,omitempty"`
+	ResultCode    string         `json:"ResultCode,omitempty"`
+	Reason        string         `json:"Reason,omitempty"`
+	EorderBalance *EorderBalance `json:"EorderBalance,omitempty"`
 }
 
 /*
 dto
 */
 type ReqBase struct {
-	EBusinessId string `json:"eBusinessID,omitempty"`
-	RequestType string `json:"requestType,omitempty"`
-	DataSign    string `json:"dataSign,omitempty"`
-	DataType    string `json:"dataType,omitempty"`
+	EBusinessId string `json:"EBusinessID,omitempty"`
+	RequestType string `json:"RequestType,omitempty"`
+	DataSign    string `json:"DataSign,omitempty"`
+	DataType    string `json:"DataType,omitempty"`
 }
 
 type ReqOrder struct {
-	OrderCode    string `json:"orderCode,omitempty"`
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	LogisticCode string `json:"logisticCode,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
 }
 type ReqEOrder struct {
-	OrderCode       string `json:"orderCode,omitempty"`
-	ShipperCode     string `json:"shipperCode,omitempty"`
-	LogisticCode    string `json:"logisticCode,omitempty"`
-	MarkDestination string `json:"markDestination,omitempty"`
-	OriginCode      string `json:"originCode,omitempty"`
-	OriginName      string `json:"originName,omitempty"`
-	DestinatioCode  string `json:"destinatioCode,omitempty"`
-	DestinatioName  string `json:"destinatioName,omitempty"`
-	SortingCode     string `json:"sortingCode,omitempty"`
-	PackageCode     string `json:"packageCode,omitempty"`
+	OrderCode       string `json:"OrderCode,omitempty"`
+	ShipperCode     string `json:"ShipperCode,omitempty"`
+	LogisticCode    string `json:"LogisticCode,omitempty"`
+	MarkDestination string `json:"MarkDestination,omitempty"`
+	OriginCode      string `json:"OriginCode,omitempty"`
+	OriginName      string `json:"OriginName,omitempty"`
+	DestinatioCode  string `json:"DestinatioCode,omitempty"`
+	DestinatioName  string `json:"DestinatioName,omitempty"`
+	SortingCode     string `json:"SortingCode,omitempty"`
+	PackageCode     string `json:"PackageCode,omitempty"`
 }
 
 type ReqCreateDataDto struct {
-	WarehouseId      string `json:"warehouseID,omitempty"`
-	WarehouseAddress string `json:"warehouseAddress,omitempty"`
-	CallBack         string `json:"callBack,omitempty"`
-	MemberId         string `json:"memberID,omitempty"`
-	ShipperCode      string `json:"shipperCode,omitempty"`
+	WarehouseId      string `json:"WarehouseID,omitempty"`
+	WarehouseAddress string `json:"WarehouseAddress,omitempty"`
+	CallBack         string `json:"CallBack,omitempty"`
+	MemberId         string `json:"MemberID,omitempty"`
+	ShipperCode      string `json:"ShipperCode,omitempty"`
 
-	LogisticCode string `json:"logisticCode,omitempty"`
-	OrderCode    string `json:"orderCode,omitempty"`
-	PayType      int    `json:"payType,omitempty"`
-	MonthCode    string `json:"monthCode,omitempty"`
-	ExpType      int    `json:"expType,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	PayType      int    `json:"PayType,omitempty"`
+	MonthCode    string `json:"MonthCode,omitempty"`
+	ExpType      int    `json:"ExpType,omitempty"`
 
-	Cost      float64   `json:"cost,omitempty"`
-	OtherCost float64   `json:"otherCost,omitempty"`
-	Receiver  *Receiver `json:"receiver,omitempty"`
-	Sender    *Sender   `json:"sender,omitempty"`
-	StartDate string    `json:"startDate,omitempty"`
+	Cost      float64   `json:"Cost,omitempty"`
+	OtherCost float64   `json:"OtherCost,omitempty"`
+	Receiver  *Receiver `json:"Receiver,omitempty"`
+	Sender    *Sender   `json:"Sender,omitempty"`
+	StartDate string    `json:"StartDate,omitempty"`
 
-	EndDate  string  `json:"endDate,omitempty"`
-	Weight   float64 `json:"weight,omitempty"`
-	Quantity int     `json:"quantity,omitempty"`
-	Volume   float64 `json:"volume,omitempty"`
-	Remark   string  `json:"remark,omitempty"`
+	EndDate  string  `json:"EndDate,omitempty"`
+	Weight   float64 `json:"Weight,omitempty"`
+	Quantity int     `json:"Quantity,omitempty"`
+	Volume   float64 `json:"Volume,omitempty"`
+	Remark   string  `json:"Remark,omitempty"`
 
-	AddServices []AddService `json:"addService,omitempty"`
-	Commoditys  []Commodity  `json:"commodity,omitempty"`
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
 }
 
 type AddService struct {
-	Name       string `json:"name,omitempty"`
-	Value      string `json:"value,omitempty"`
-	CustomerId string `json:"customerID,omitempty"`
+	Name       string `json:"Name,omitempty"`
+	Value      string `json:"Value,omitempty"`
+	CustomerId string `json:"CustomerID,omitempty"`
 }
 
 type Commodity struct {
-	GoodsName     string  `json:"goodsName,omitempty"`
-	GoodsCode     string  `json:"goodsCode,omitempty"`
-	Goodsquantity int     `json:"goodsquantity,omitempty"`
-	GoodsPrice    float64 `json:"goodsPrice,omitempty"`
-	GoodsWeight   float64 `json:"goodsWeight,omitempty"`
+	GoodsName     string  `json:"GoodsName,omitempty"`
+	GoodsCode     string  `json:"GoodsCode,omitempty"`
+	Goodsquantity int     `json:"Goodsquantity,omitempty"`
+	GoodsPrice    float64 `json:"GoodsPrice,omitempty"`
+	GoodsWeight   float64 `json:"GoodsWeight,omitempty"`
 
-	GoodsDesc string  `json:"goodsDesc,omitempty"`
-	GoodsVol  float64 `json:"goodsVol,omitempty"`
+	GoodsDesc string  `json:"GoodsDesc,omitempty"`
+	GoodsVol  float64 `json:"GoodsVol,omitempty"`
 }
 
 type Receiver struct {
-	Company  string `json:"company,omitempty"`
-	Name     string `json:"name,omitempty"`
-	Tel      string `json:"tel,omitempty"`
-	Mobile   string `json:"mobile,omitempty"`
-	PostCode string `json:"postCode,omitempty"`
+	Company  string `json:"Company,omitempty"`
+	Name     string `json:"Name,omitempty"`
+	Tel      string `json:"Tel,omitempty"`
+	Mobile   string `json:"Mobile,omitempty"`
+	PostCode string `json:"PostCode,omitempty"`
 
-	ProvinceName string `json:"provinceName,omitempty"`
-	CityName     string `json:"cityName,omitempty"`
-	ExpAreaName  string `json:"expAreaName,omitempty"`
-	Address      string `json:"address,omitempty"`
+	ProvinceName string `json:"ProvinceName,omitempty"`
+	CityName     string `json:"CityName,omitempty"`
+	ExpAreaName  string `json:"ExpAreaName,omitempty"`
+	Address      string `json:"Address,omitempty"`
 }
 
 type Sender struct {
-	Company  string `json:"company,omitempty"`
-	Name     string `json:"name,omitempty"`
-	Tel      string `json:"tel,omitempty"`
-	Mobile   string `json:"mobile,omitempty"`
-	PostCode string `json:"postCode,omitempty"`
+	Company  string `json:"Company,omitempty"`
+	Name     string `json:"Name,omitempty"`
+	Tel      string `json:"Tel,omitempty"`
+	Mobile   string `json:"Mobile,omitempty"`
+	PostCode string `json:"PostCode,omitempty"`
 
-	ProvinceName string `json:"provinceName,omitempty"`
-	CityName     string `json:"cityName,omitempty"`
-	ExpAreaName  string `json:"expAreaName,omitempty"`
-	Address      string `json:"address,omitempty"`
+	ProvinceName string `json:"ProvinceName,omitempty"`
+	CityName     string `json:"CityName,omitempty"`
+	ExpAreaName  string `json:"ExpAreaName,omitempty"`
+	Address      string `json:"Address,omitempty"`
 }
 
 type ReqQueryDataDto struct {
-	OrderCode    string `json:"orderCode,omitempty"`
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	LogisticCode string `json:"logisticCode,omitempty"`
-	IsHandleInfo string `json:"isHandleInfo,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
+	IsHandleInfo string `json:"IsHandleInfo,omitempty"`
 }
 type ReqCustomerDto struct {
 	Url    string `json:"url,omitempty"`
-	ApiKey string `json:"apiKey,omitempty"`
+	ApiKey string `json:"ApiKey,omitempty"`
 }
 type Trace struct {
-	AcceptTime    string `json:"acceptTime,omitempty"`
-	AcceptStation string `json:"acceptStation,omitempty"`
-	Remark        string `json:"remark,omitempty"`
+	AcceptTime    string `json:"AcceptTime,omitempty"`
+	AcceptStation string `json:"AcceptStation,omitempty"`
+	Remark        string `json:"Remark,omitempty"`
 }
 
 //订阅RequestData
 type ReqSubscribeDataDto struct {
-	CallBack     string `json:"callBack,omitempty"`
-	MemberID     string `json:"memberID,omitempty"`
-	WareHouseID  string `json:"wareHouseID,omitempty"`
-	CustomerName string `json:"customerName,omitempty"`
-	CustomerPwd  string `json:"customerPwd,omitempty"`
+	CallBack     string `json:"CallBack,omitempty"`
+	MemberID     string `json:"MemberID,omitempty"`
+	WareHouseID  string `json:"WareHouseID,omitempty"`
+	CustomerName string `json:"CustomerName,omitempty"`
+	CustomerPwd  string `json:"CustomerPwd,omitempty"`
 
-	SendSite     string `json:"sendSite,omitempty"`
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	LogisticCode string `json:"logisticCode,omitempty"`
-	OrderCode    string `json:"orderCode,omitempty"`
-	MonthCode    string `json:"monthCode,omitempty"`
+	SendSite     string `json:"SendSite,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	MonthCode    string `json:"MonthCode,omitempty"`
 
-	PayType   int       `json:"payType,omitempty"`
-	ExpType   string    `json:"expType,omitempty"`
-	Cost      float64   `json:"cost,omitempty"`
-	OtherCost float64   `json:"otherCost,omitempty"`
-	Receiver  *Receiver `json:"receiver,omitempty"`
-	Sender    *Sender   `json:"sender,omitempty"`
+	PayType   int       `json:"PayType,omitempty"`
+	ExpType   string    `json:"ExpType,omitempty"`
+	Cost      float64   `json:"Cost,omitempty"`
+	OtherCost float64   `json:"OtherCost,omitempty"`
+	Receiver  *Receiver `json:"Receiver,omitempty"`
+	Sender    *Sender   `json:"Sender,omitempty"`
 
-	IsNotice      int     `json:"isNotice,omitempty"`
-	StartDate     string  `json:"startDate,omitempty"`
-	EndDate       string  `json:"endDate,omitempty"`
-	Weight        float64 `json:"weight,omitempty"`
-	Quantity      int     `json:"quantity,omitempty"`
-	Volume        float64 `json:"volume,omitempty"`
-	Remark        string  `json:"remark,omitempty"`
-	IsSendMessage int     `json:"isSendMessage,omitempty"`
+	IsNotice      int     `json:"IsNotice,omitempty"`
+	StartDate     string  `json:"StartDate,omitempty"`
+	EndDate       string  `json:"EndDate,omitempty"`
+	Weight        float64 `json:"Weight,omitempty"`
+	Quantity      int     `json:"Quantity,omitempty"`
+	Volume        float64 `json:"Volume,omitempty"`
+	Remark        string  `json:"Remark,omitempty"`
+	IsSendMessage int     `json:"IsSendMessage,omitempty"`
 
-	AddServices []AddService `json:"addService,omitempty"`
-	Commoditys  []Commodity  `json:"commodity,omitempty"`
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
 }
 
 type ReqPushDataDto struct {
-	EBusinessId string        `json:"eBusinessID,omitempty"`
-	PushTime    string        `json:"pushTime,omitempty"`
-	Count       string        `json:"count,omitempty"`
-	Data        []PushDataDto `json:"data,omitempty"`
+	EBusinessId string        `json:"EBusinessID,omitempty"`
+	PushTime    string        `json:"PushTime,omitempty"`
+	Count       string        `json:"Count,omitempty"`
+	Data        []PushDataDto `json:"Data,omitempty"`
 }
 type PushDataDto struct {
-	EBusinessId           string  `json:"eBusinessID,omitempty"`
-	ShipperCode           string  `json:"shipperCode,omitempty"`
-	LogisticCode          string  `json:"logisticCode,omitempty"`
-	Success               bool    `json:"success,omitempty"`
-	Reason                string  `json:"reason,omitempty"`
-	State                 string  `json:"state,omitempty"` //物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
-	CallBack              string  `json:"callBack,omitempty"`
-	Traces                []Trace `json:"traces,omitempty"`
-	EstimatedDeliveryTime string  `json:"estimatedDeliveryTime,omitempty"`
+	EBusinessId           string  `json:"EBusinessID,omitempty"`
+	ShipperCode           string  `json:"ShipperCode,omitempty"`
+	LogisticCode          string  `json:"LogisticCode,omitempty"`
+	Success               bool    `json:"Success,omitempty"`
+	Reason                string  `json:"Reason,omitempty"`
+	State                 string  `json:"State,omitempty"` //物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
+	CallBack              string  `json:"CallBack,omitempty"`
+	Traces                []Trace `json:"Traces,omitempty"`
+	EstimatedDeliveryTime string  `json:"EstimatedDeliveryTime,omitempty"`
 }
 
 type ReqRecognizeDataDto struct {
-	LogisticCode string `json:"logisticCode,omitempty"`
+	LogisticCode string `json:"LogisticCode,omitempty"`
 }
 type Shipper struct {
-	ShipperCode string `json:"shipperCode,omitempty"`
-	ShipperName string `json:"shipperName,omitempty"`
+	ShipperCode string `json:"ShipperCode,omitempty"`
+	ShipperName string `json:"ShipperName,omitempty"`
 }
 
 type ReqECreateDataDto struct {
-	CallBack     string  `json:"callBack,omitempty"`
-	MemberId     string  `json:"memberID,omitempty"`
-	CustomerName string  `json:"customerName,omitempty"`
-	CustomerPwd  string  `json:"customerPwd,omitempty"`
-	SendSite     string  `json:"sendSite,omitempty"`
-	ShipperCode  string  `json:"shipperCode,omitempty"`
-	LogisticCode string  `json:"logisticCode,omitempty"`
-	OrderCode    string  `json:"orderCode,omitempty"`
-	ThrOrderCode string  `json:"thrOrderCode,omitempty"`
-	MonthCode    string  `json:"monthCode,omitempty"`
-	PayType      int     `json:"payType,omitempty"`
-	ExpType      int     `json:"expType,omitempty"`
-	IsNotice     int     `json:"isNotice,omitempty"`
-	Cost         float64 `json:"cost,omitempty"`
-	OtherCost    float64 `json:"otherCost,omitempty"`
+	CallBack     string  `json:"CallBack,omitempty"`
+	MemberId     string  `json:"MemberID,omitempty"`
+	CustomerName string  `json:"CustomerName,omitempty"`
+	CustomerPwd  string  `json:"CustomerPwd,omitempty"`
+	SendSite     string  `json:"SendSite,omitempty"`
+	ShipperCode  string  `json:"ShipperCode,omitempty"`
+	LogisticCode string  `json:"LogisticCode,omitempty"`
+	OrderCode    string  `json:"OrderCode,omitempty"`
+	ThrOrderCode string  `json:"ThrOrderCode,omitempty"`
+	MonthCode    string  `json:"MonthCode,omitempty"`
+	PayType      int     `json:"PayType,omitempty"`
+	ExpType      int     `json:"ExpType,omitempty"`
+	IsNotice     int     `json:"IsNotice,omitempty"`
+	Cost         float64 `json:"Cost,omitempty"`
+	OtherCost    float64 `json:"OtherCost,omitempty"`
 
-	Receiver *Receiver `json:"receiver,omitempty"`
-	Sender   *Sender   `json:"sender,omitempty"`
+	Receiver *Receiver `json:"Receiver,omitempty"`
+	Sender   *Sender   `json:"Sender,omitempty"`
 
-	StartDate string  `json:"startDate,omitempty"`
-	EndDate   string  `json:"endDate,omitempty"`
-	Weight    float64 `json:"weight,omitempty"`
-	Quantity  int     `json:"quantity,omitempty"`
-	Volume    float64 `json:"volume,omitempty"`
-	Remark    string  `json:"remark,omitempty"`
+	StartDate string  `json:"StartDate,omitempty"`
+	EndDate   string  `json:"EndDate,omitempty"`
+	Weight    float64 `json:"Weight,omitempty"`
+	Quantity  int     `json:"Quantity,omitempty"`
+	Volume    float64 `json:"Volume,omitempty"`
+	Remark    string  `json:"Remark,omitempty"`
 
-	AddServices []AddService `json:"addService,omitempty"`
-	Commoditys  []Commodity  `json:"commodity,omitempty"`
+	AddServices []AddService `json:"AddService,omitempty"`
+	Commoditys  []Commodity  `json:"Commodity,omitempty"`
 
-	IsReturnPrintTemplate string `json:"isReturnPrintTemplate,omitempty"`
-	IsSendMessage         int    `json:"isSendMessage,omitempty"`
-	TemplateSize          string `json:"templateSize,omitempty"`
+	IsReturnPrintTemplate string `json:"IsReturnPrintTemplate,omitempty"`
+	IsSendMessage         int    `json:"IsSendMessage,omitempty"`
+	TemplateSize          string `json:"TemplateSize,omitempty"`
 }
 
 type ReqECancelDataDto struct {
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	OrderCode    string `json:"orderCode,omitempty"`
-	ExpNo        string `json:"expNo,omitempty"`
-	CustomerName string `json:"customerName,omitempty"`
-	CustomerPwd  string `json:"customerPwd,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	OrderCode    string `json:"OrderCode,omitempty"`
+	ExpNo        string `json:"ExpNo,omitempty"`
+	CustomerName string `json:"CustomerName,omitempty"`
+	CustomerPwd  string `json:"CustomerPwd,omitempty"`
 }
 
 type ReqEAvailableNumDataDto struct {
-	ShipperCode  string `json:"shipperCode,omitempty"`
-	CustomerName string `json:"customerName,omitempty"`
-	CustomerPwd  string `json:"customerPwd,omitempty"`
-	StationCode  string `json:"stationCode,omitempty"`
-	StationName  string `json:"stationName,omitempty"`
+	ShipperCode  string `json:"ShipperCode,omitempty"`
+	CustomerName string `json:"CustomerName,omitempty"`
+	CustomerPwd  string `json:"CustomerPwd,omitempty"`
+	StationCode  string `json:"StationCode,omitempty"`
+	StationName  string `json:"StationName,omitempty"`
 }
 
 type EorderBalance struct {
-	TotalNum     int `json:"totalNum,omitempty"`
-	AvailableNum int `json:"availableNum,omitempty"`
+	TotalNum     int `json:"TotalNum,omitempty"`
+	AvailableNum int `json:"AvailableNum,omitempty"`
 }
