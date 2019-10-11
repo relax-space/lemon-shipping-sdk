@@ -77,3 +77,21 @@ func Test_Query(t *testing.T) {
 	test.Ok(t, err)
 	fmt.Println(status, code, respDto.RespBase, respDto.Info, err)
 }
+
+func Test_GetOrdernoByBillno(t *testing.T) {
+	custDto := &ReqCustomerDto{
+		Url: os.Getenv("SPRING_URL"),
+	}
+	reqDto := &ReqGetOrdernoByBillnoDto{
+		ReqBase: &ReqBase{
+			Code:     os.Getenv("SPRING_CODE"),
+			Password: os.Getenv("SPRING_PWD"),
+		},
+		Content: &GetOrdernoByBillnoContentDto{
+			BillNo: "2003796858",
+		},
+	}
+	status, code, respDto, err := GetOrdernoByBillno(reqDto, custDto)
+	test.Ok(t, err)
+	fmt.Println(status, code, respDto.RespBase, respDto.Info, err)
+}

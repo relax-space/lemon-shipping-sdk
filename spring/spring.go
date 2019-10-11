@@ -172,3 +172,52 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 	code = SUC
 	return
 }
+
+func GetOrdernoByBillno(reqDto *ReqGetOrdernoByBillnoDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespGetOrdernoByBillnoDto, err error) {
+	reqDto.Func = "order.query"
+	reqDto.Datetime = time.Now().UTC().Add(8 * time.Hour).Format("20060102150405")
+	signParam := reqDto.Code + reqDto.Password + reqDto.Datetime
+	reqDto.VerifyCode, err = sign.GetMD5Hash(signParam, true)
+	if err != nil {
+		code = E02
+		return
+	}
+	data, err := toBase64(reqDto)
+	if err != nil {
+		code = E02
+		return
+	}
+	var respCommonDto RespCommonDto
+	req := httpreq.New(http.MethodPost, custDto.Url, "data="+data, func(httpReq *httpreq.HttpReq) error {
+		httpReq.ReqDataType = httpreq.FormType
+		return nil
+	})
+	statusCode, err = req.Call(&respCommonDto)
+	if err != nil {
+		code = E01
+		return
+	}
+	if statusCode != http.StatusOK {
+		code = E01
+		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
+		return
+	}
+	if respCommonDto.Result != "true" {
+		code = E03
+		err = fmt.Errorf("%v-%v", respCommonDto.Remark, respCommonDto.Info)
+		return
+	}
+	var infoDto GetOrdernoByBillnoInfoDto
+	err = mapstruct.Decode(respCommonDto.Info, &infoDto)
+	if err != nil {
+		code = E04
+		return
+	}
+	respDto = &RespGetOrdernoByBillnoDto{
+		RespBase: respCommonDto.RespBase,
+		Info:     &infoDto,
+	}
+
+	code = SUC
+	return
+}
