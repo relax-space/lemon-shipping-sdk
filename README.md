@@ -83,3 +83,21 @@ custDto := &ReqCustomerDto{
 	status, respDto, err := Query(reqDto, custDto)
 	fmt.Println(status, respDto.RespBase, respDto.Info, err)
 ```
+
+###  spring -- get orderno by billno
+```go
+	custDto := &ReqCustomerDto{
+		Url: "***",
+	}
+	reqDto := &ReqGetOrdernoByBillnoDto{
+		ReqBase: &ReqBase{
+			Code:     "***",
+			Password: "***",
+		},
+		Content: &QueryGetOrdernoByBillnoDto{
+			BillNo: "2003796858",
+		},
+	}
+	status, respDto, err := Query(reqDto, custDto)
+	fmt.Println(status, respDto.RespBase, respDto.Info, err)
+```

@@ -20,6 +20,11 @@ type ReqQueryDto struct {
 	Content *QueryContentDto `json:"content"`
 }
 
+type ReqGetOrdernoByBillnoDto struct {
+	*ReqBase
+	Content *GetOrdernoByBillnoContentDto `json:"content"`
+}
+
 type RespCreateDto struct {
 	*RespBase
 	Info *CreateInfoDto `json:"info"`
@@ -34,6 +39,12 @@ type RespQueryDto struct {
 	*RespBase
 	Info []QueryInfoDto `json:"info"`
 }
+
+type RespGetOrdernoByBillnoDto struct {
+	*RespBase
+	Info *GetOrdernoByBillnoInfoDto `json:"info"`
+}
+
 type RespCommonDto struct {
 	*RespBase
 	Info interface{} `json:"info"`
@@ -100,6 +111,14 @@ type QueryInfoDto struct {
 	BillNo    string `json:"billno"`
 	StateInfo string `json:"state_info"`
 	State     string `json:"state"`
+}
+
+type GetOrdernoByBillnoContentDto struct {
+	BillNo string `json:"billno"`
+}
+type GetOrdernoByBillnoInfoDto struct {
+	OrderNo string `json:"orderno"`
+	BillNo  string `json:"billno"`
 }
 
 type ReqCustomerDto struct {
