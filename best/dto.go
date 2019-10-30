@@ -6,16 +6,16 @@ import (
 
 //request param
 type ReqCreateDto struct {
-	*ReqBase
-	BizData *CreateContentDto `xml:"bizData" json:"bizData,omitempty"`
+	ReqBase
+	BizData CreateContentDto `xml:"bizData" json:"bizData,omitempty"`
 }
 type ReqCancelDto struct {
-	*ReqBase
-	BizData *CancelContentDto `xml:"bizData" json:"bizData,omitempty"`
+	ReqBase
+	BizData CancelContentDto `xml:"bizData" json:"bizData,omitempty"`
 }
 type ReqQueryDto struct {
-	*ReqBase
-	BizData *QueryContentDto `xml:"bizData" json:"bizData,omitempty"`
+	ReqBase
+	BizData QueryContentDto `xml:"bizData" json:"bizData,omitempty"`
 }
 
 type RespQueryDto struct {
@@ -65,8 +65,8 @@ type CreateContentDto struct {
 	OrderCode       string       `xml:"orderCode" json:"orderCode,omitempty"`
 	Type            string       `xml:"type" json:"type,omitempty"`
 	Value           string       `xml:"value" json:"value,omitempty"`
-	Sender          *SenderDto   `xml:"sender" json:"sender,omitempty"`
-	Receiver        *ReceiverDto `xml:"receiver" json:"receiver,omitempty"`
+	Sender          SenderDto   `xml:"sender" json:"sender,omitempty"`
+	Receiver        ReceiverDto `xml:"receiver" json:"receiver,omitempty"`
 	Services        []ServiceDto `xml:"services>service" json:"services,omitempty"`
 	Items           []ItemDto    `xml:"items>item" json:"items,omitempty"`
 }

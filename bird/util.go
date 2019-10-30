@@ -7,7 +7,7 @@ import (
 	"github.com/relax-space/go-kit/sign"
 )
 
-func signBird(text string) (string, error) {
+func SignBird(text string) (string, error) {
 	md5Data, err := sign.GetMD5Hash(text, true)
 	if err != nil {
 		return "", err

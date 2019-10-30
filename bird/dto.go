@@ -5,37 +5,37 @@ request or response parameter
 */
 
 type ReqQueryDto struct {
-	*ReqBase
-	RequestData *ReqQueryDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqQueryDataDto `json:"RequestData,omitempty"`
 }
 type ReqCreateDto struct {
-	*ReqBase
-	RequestData *ReqCreateDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqCreateDataDto `json:"RequestData,omitempty"`
 }
 type ReqSubscribeDto struct {
-	*ReqBase
-	RequestData *ReqSubscribeDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqSubscribeDataDto `json:"RequestData,omitempty"`
 }
 type ReqPushDto struct {
 	RequestType string          `json:"RequestType,omitempty"`
 	DataSign    string          `json:"DataSign,omitempty"`
-	RequestData *ReqPushDataDto `json:"RequestData,omitempty"`
+	RequestData ReqPushDataDto `json:"RequestData,omitempty"`
 }
 type ReqRecognizeDto struct {
-	*ReqBase
-	RequestData *ReqRecognizeDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqRecognizeDataDto `json:"RequestData,omitempty"`
 }
 type ReqECreateDto struct {
-	*ReqBase
-	RequestData *ReqECreateDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqECreateDataDto `json:"RequestData,omitempty"`
 }
 type ReqECancelDto struct {
-	*ReqBase
-	RequestData *ReqECancelDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqECancelDataDto `json:"RequestData,omitempty"`
 }
 type ReqEAvailableNumDto struct {
-	*ReqBase
-	RequestData *ReqEAvailableNumDataDto `json:"RequestData,omitempty"`
+	ReqBase
+	RequestData ReqEAvailableNumDataDto `json:"RequestData,omitempty"`
 }
 
 type RespQueryDto struct {
@@ -51,7 +51,7 @@ type RespQueryDto struct {
 }
 type RespCreateDto struct {
 	EBusinessId          string    `json:"EBusinessID,omitempty"`
-	Order                *ReqOrder `json:"Order,omitempty"`
+	Order                ReqOrder `json:"Order,omitempty"`
 	Success              bool      `json:"Success,omitempty"`
 	ResultCode           string    `json:"ResultCode,omitempty"`
 	Reason               string    `json:"Reason,omitempty"`
@@ -79,7 +79,7 @@ type RespRecognizeDto struct {
 }
 type RespECreateDto struct {
 	EBusinessId           string     `json:"EBusinessID,omitempty"`
-	Order                 *ReqEOrder `json:"Order,omitempty"`
+	Order                 ReqEOrder `json:"Order,omitempty"`
 	Success               bool       `json:"Success,omitempty"`
 	ResultCode            string     `json:"ResultCode,omitempty"`
 	Reason                string     `json:"Reason,omitempty"`
@@ -106,7 +106,7 @@ type RespEAvailableNumDto struct {
 	Success       bool           `json:"Success,omitempty"`
 	ResultCode    string         `json:"ResultCode,omitempty"`
 	Reason        string         `json:"Reason,omitempty"`
-	EorderBalance *EorderBalance `json:"EorderBalance,omitempty"`
+	EorderBalance EorderBalance `json:"EorderBalance,omitempty"`
 }
 
 /*
@@ -152,8 +152,8 @@ type ReqCreateDataDto struct {
 
 	Cost      float64   `json:"Cost,omitempty"`
 	OtherCost float64   `json:"OtherCost,omitempty"`
-	Receiver  *Receiver `json:"Receiver,omitempty"`
-	Sender    *Sender   `json:"Sender,omitempty"`
+	Receiver  Receiver `json:"Receiver,omitempty"`
+	Sender    Sender   `json:"Sender,omitempty"`
 	StartDate string    `json:"StartDate,omitempty"`
 
 	EndDate  string  `json:"EndDate,omitempty"`
@@ -243,8 +243,8 @@ type ReqSubscribeDataDto struct {
 	ExpType   string    `json:"ExpType,omitempty"`
 	Cost      float64   `json:"Cost,omitempty"`
 	OtherCost float64   `json:"OtherCost,omitempty"`
-	Receiver  *Receiver `json:"Receiver,omitempty"`
-	Sender    *Sender   `json:"Sender,omitempty"`
+	Receiver  Receiver `json:"Receiver,omitempty"`
+	Sender    Sender   `json:"Sender,omitempty"`
 
 	IsNotice      int     `json:"IsNotice,omitempty"`
 	StartDate     string  `json:"StartDate,omitempty"`
@@ -302,8 +302,8 @@ type ReqECreateDataDto struct {
 	Cost         float64 `json:"Cost,omitempty"`
 	OtherCost    float64 `json:"OtherCost,omitempty"`
 
-	Receiver *Receiver `json:"Receiver,omitempty"`
-	Sender   *Sender   `json:"Sender,omitempty"`
+	Receiver Receiver `json:"Receiver,omitempty"`
+	Sender   Sender   `json:"Sender,omitempty"`
 
 	StartDate string  `json:"StartDate,omitempty"`
 	EndDate   string  `json:"EndDate,omitempty"`

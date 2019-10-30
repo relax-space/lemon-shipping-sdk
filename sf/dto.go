@@ -6,25 +6,25 @@ import "encoding/xml"
 
 type ReqPushDto struct {
 	XMLName xml.Name `xml:"Request" json:"Request,omitempty"`
-	*ReqBaseDto
-	Body *ReqBodyPushDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	ReqBaseDto
+	Body ReqBodyPushDto `xml:"Body,omitempty" json:"Body,omitempty"`
 }
 
 type ReqConfirmDto struct {
 	XMLName xml.Name `xml:"Request" json:"Request,omitempty"`
-	*ReqBaseDto
-	Body *ReqBodyConfirmDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	ReqBaseDto
+	Body ReqBodyConfirmDto `xml:"Body,omitempty" json:"Body,omitempty"`
 }
 type ReqRouteDto struct {
 	XMLName xml.Name `xml:"Request" json:"Request,omitempty"`
-	*ReqBaseDto
-	Body *ReqBodyRouteDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	ReqBaseDto
+	Body ReqBodyRouteDto `xml:"Body,omitempty" json:"Body,omitempty"`
 }
 
 type ReqCreateDto struct {
 	XMLName xml.Name `xml:"Request" json:"Request,omitempty"`
-	*ReqBaseDto
-	Body *ReqBodyCreateDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	ReqBaseDto
+	Body ReqBodyCreateDto `xml:"Body,omitempty" json:"Body,omitempty"`
 }
 
 type ReqCustomerDto struct {
@@ -38,7 +38,7 @@ type RespConfirmDto struct {
 	XMLName xml.Name            `xml:"Response,omitempty" json:"Response,omitempty"`
 	Service string              `xml:"service,attr,omitempty" json:"service,omitempty"`
 	Head    string              `xml:"Head,omitempty" json:"Head,omitempty"`
-	Body    *RespBodyComfirmDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	Body    RespBodyComfirmDto `xml:"Body,omitempty" json:"Body,omitempty"`
 	Error   RespErrorDto        `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
 }
 
@@ -46,7 +46,7 @@ type RespRouteDto struct {
 	XMLName xml.Name          `xml:"Response,omitempty" json:"Response,omitempty"`
 	Service string            `xml:"service,attr,omitempty" json:"service,omitempty"`
 	Head    string            `xml:"Head,omitempty" json:"Head,omitempty"`
-	Body    *RespBodyRouteDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	Body    RespBodyRouteDto `xml:"Body,omitempty" json:"Body,omitempty"`
 	Error   RespErrorDto      `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
 }
 
@@ -54,7 +54,7 @@ type RespCreateDto struct {
 	XMLName xml.Name           `xml:"Response,omitempty" json:"Response,omitempty"`
 	Service string             `xml:"service,attr,omitempty" json:"service,omitempty"`
 	Head    string             `xml:"Head,omitempty" json:"Head,omitempty"`
-	Body    *RespBodyCreateDto `xml:"Body,omitempty" json:"Body,omitempty"`
+	Body    RespBodyCreateDto `xml:"Body,omitempty" json:"Body,omitempty"`
 	Error   RespErrorDto       `xml:"ERROR,omitempty" json:"ERROR,omitempty"`
 }
 type RespPushDto struct {
@@ -67,7 +67,7 @@ type RespPushDto struct {
 //util info
 
 type ReqBodyPushDto struct {
-	WaybillRoute *ReqWaybillRouteDto `xml:"WaybillRoute,omitempty" json:"WaybillRoute,omitempty"`
+	WaybillRoute ReqWaybillRouteDto `xml:"WaybillRoute,omitempty" json:"WaybillRoute,omitempty"`
 }
 
 type ReqWaybillRouteDto struct {
@@ -82,7 +82,7 @@ type ReqWaybillRouteDto struct {
 }
 
 type ReqBodyConfirmDto struct {
-	OrderConfirm *ReqOrderConfirmDto `xml:"OrderConfirm,omitempty" json:"OrderConfirm,omitempty"`
+	OrderConfirm ReqOrderConfirmDto `xml:"OrderConfirm,omitempty" json:"OrderConfirm,omitempty"`
 }
 type ReqOrderConfirmDto struct {
 	OrderId       string `xml:"orderid,attr,omitempty" json:"orderid,omitempty"`
@@ -93,8 +93,8 @@ type ReqOrderConfirmDto struct {
 
 	ConsignEmpCode     string                    `xml:"consign_emp_code,attr,omitempty" json:"consign_emp_code,omitempty"`
 	SourceZoneCode     string                    `xml:"source_zone_code,attr,omitempty" json:"source_zone_code,omitempty"`
-	OrderConfirmOption *ReqOrderConfirmOptionDto `xml:"OrderConfirmOption,omitempty"  json:"OrderConfirmOption,omitempty"`
-	Extra              *ExtraDto                 `xml:"Extra,omitempty"  json:"Extra,omitempty"`
+	OrderConfirmOption ReqOrderConfirmOptionDto `xml:"OrderConfirmOption,omitempty"  json:"OrderConfirmOption,omitempty"`
+	Extra              ExtraDto                 `xml:"Extra,omitempty"  json:"Extra,omitempty"`
 }
 type ReqOrderConfirmOptionDto struct {
 	Weight         float64 `xml:"weight,attr,omitempty"  json:"weight,omitempty"`
@@ -108,18 +108,18 @@ type ReqOrderConfirmOptionDto struct {
 }
 
 type ReqBodyRouteDto struct {
-	RouteRequest *ReqRouteRequestDto `xml:"RouteRequest,omitempty"  json:"RouteRequest,omitempty"`
+	RouteRequest ReqRouteRequestDto `xml:"RouteRequest,omitempty"  json:"RouteRequest,omitempty"`
 }
 
 type ReqRouteRequestDto struct {
 	TrackingType   int64     `xml:"tracking_type,attr,omitempty"  json:"tracking_type,omitempty"`
 	TrackingNumber string    `xml:"tracking_number,attr,omitempty"  json:"tracking_number,omitempty"`
 	MethodType     int64     `xml:"method_type,attr,omitempty"  json:"method_type,omitempty"`
-	Extra          *ExtraDto `xml:"Extra,omitempty"  json:"Extra,omitempty"`
+	Extra          ExtraDto `xml:"Extra,omitempty"  json:"Extra,omitempty"`
 }
 
 type ReqBodyCreateDto struct {
-	Order *ReqOrderCreateDto `xml:"Order,omitempty"  json:"Order,omitempty"`
+	Order ReqOrderCreateDto `xml:"Order,omitempty"  json:"Order,omitempty"`
 }
 
 type ReqBaseDto struct {
@@ -204,9 +204,9 @@ type ReqOrderCreateDto struct {
 	WaybillSize    float64          `xml:"waybill_size,attr,omitempty"  json:"waybill_size,omitempty"`
 	FilterField    string           `xml:"filter_field,attr,omitempty"  json:"filter_field,omitempty"`
 	TotalNetWeight float64          `xml:"total_net_weight,attr,omitempty"  json:"total_net_weight,omitempty"`
-	Cargo          *CargoDto        `xml:"Cargo,omitempty"  json:"Cargo,omitempty"`
-	AddedService   *AddedServiceDto `xml "AddedService,omitempty"  json:"AddedService,omitempty"`
-	Extra          *ExtraDto        `xml:"Extra,omitempty"  json:"Extra,omitempty"`
+	Cargo          CargoDto        `xml:"Cargo,omitempty"  json:"Cargo,omitempty"`
+	AddedService   AddedServiceDto `xml "AddedService,omitempty"  json:"AddedService,omitempty"`
+	Extra          ExtraDto        `xml:"Extra,omitempty"  json:"Extra,omitempty"`
 }
 
 type CargoDto struct {
@@ -263,7 +263,7 @@ type RespErrorDto struct {
 	Error string `xml:",chardata" json:"Error"`
 }
 type RespBodyComfirmDto struct {
-	OrderConfirmResponse *OrderConfirmResponseDto `xml:"OrderConfirmResponse,omitempty" json:"OrderConfirmResponse"`
+	OrderConfirmResponse OrderConfirmResponseDto `xml:"OrderConfirmResponse,omitempty" json:"OrderConfirmResponse"`
 }
 type OrderConfirmResponseDto struct {
 	OrderId   string `xml:"orderid,attr,omitempty" json:"orderid"`
@@ -272,7 +272,7 @@ type OrderConfirmResponseDto struct {
 }
 
 type RespBodyCreateDto struct {
-	OrderResponse *OrderResponseDto `xml:"OrderResponse,omitempty" json:"OrderResponse"`
+	OrderResponse OrderResponseDto `xml:"OrderResponse,omitempty" json:"OrderResponse"`
 }
 type OrderResponseDto struct {
 	OrderId          string `xml:"orderid,attr,omitempty" json:"orderid"`
@@ -287,7 +287,7 @@ type OrderResponseDto struct {
 }
 
 type RespBodyRouteDto struct {
-	RouteResponse *RouteResponseDto `xml:"RouteResponse,omitempty" json:"RouteResponse"`
+	RouteResponse RouteResponseDto `xml:"RouteResponse,omitempty" json:"RouteResponse"`
 }
 
 type RouteResponseDto struct {

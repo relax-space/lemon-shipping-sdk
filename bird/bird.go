@@ -2,7 +2,6 @@ package bird
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 
@@ -10,17 +9,16 @@ import (
 	"github.com/relax-space/go-kit/base"
 )
 
-func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespQueryDto, err error) {
+func Query(reqDto ReqQueryDto, custDto ReqCustomerDto) (int, RespQueryDto, error) {
+	var respDto RespQueryDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -35,37 +33,23 @@ func Query(reqDto *ReqQueryDto, custDto *ReqCustomerDto) (statusCode int, code s
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }
 
-func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespCreateDto, err error) {
+func Create(reqDto ReqCreateDto, custDto ReqCustomerDto) (int, RespCreateDto, error) {
+	var respDto RespCreateDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -80,37 +64,25 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }
 
-func Subscribe(reqDto *ReqSubscribeDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespSubscribeDto, err error) {
+func Subscribe(reqDto ReqSubscribeDto, custDto ReqCustomerDto) (int, RespSubscribeDto, error) {
+	var respDto RespSubscribeDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
+
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
+
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -125,37 +97,25 @@ func Subscribe(reqDto *ReqSubscribeDto, custDto *ReqCustomerDto) (statusCode int
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	code = SUC
-	return
+	return statusCode, respDto, nil
+
 }
 
-func Recognize(reqDto *ReqRecognizeDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespRecognizeDto, err error) {
+func Recognize(reqDto ReqRecognizeDto, custDto ReqCustomerDto) (int, RespRecognizeDto, error) {
+	var respDto RespRecognizeDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -170,37 +130,23 @@ func Recognize(reqDto *ReqRecognizeDto, custDto *ReqCustomerDto) (statusCode int
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Code)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }
 
-func ECreate(reqDto *ReqECreateDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespECreateDto, err error) {
+func ECreate(reqDto ReqECreateDto, custDto ReqCustomerDto) (int, RespECreateDto, error) {
+	var respDto RespECreateDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -215,36 +161,23 @@ func ECreate(reqDto *ReqECreateDto, custDto *ReqCustomerDto) (statusCode int, co
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }
-func ECancel(reqDto *ReqECancelDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespECancelDto, err error) {
+func ECancel(reqDto ReqECancelDto, custDto ReqCustomerDto) (int, RespECancelDto, error) {
+	var respDto RespECancelDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -259,36 +192,23 @@ func ECancel(reqDto *ReqECancelDto, custDto *ReqCustomerDto) (statusCode int, co
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }
-func EAvailableNum(reqDto *ReqEAvailableNumDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespEAvailableNumDto, err error) {
+func EAvailableNum(reqDto ReqEAvailableNumDto, custDto ReqCustomerDto) (int, RespEAvailableNumDto, error) {
+	var respDto RespEAvailableNumDto
 	b, err := json.Marshal(reqDto.RequestData)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	signParam := string(b) + custDto.ApiKey
-	reqDto.DataSign, err = signBird(signParam)
+	reqDto.DataSign, err = SignBird(signParam)
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqMap := make(map[string]string, 0)
 	reqMap["EBusinessID"] = reqDto.EBusinessId
@@ -303,22 +223,10 @@ func EAvailableNum(reqDto *ReqEAvailableNumDto, custDto *ReqCustomerDto) (status
 		httpReq.RespDataType = httpreq.JsonType
 		return nil
 	})
-	statusCode, err = req.Call(&respDto)
+	statusCode, err := req.Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-	if respDto.Success != true {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Reason)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	code = SUC
-	return
+	return statusCode, respDto, nil
 }

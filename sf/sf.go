@@ -2,7 +2,6 @@ package sf
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 
 	"github.com/pangpanglabs/goutils/httpreq"
@@ -11,24 +10,22 @@ import (
 	"github.com/relax-space/go-kit/sign"
 )
 
-func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespCreateDto, err error) {
+func Create(reqDto ReqCreateDto, custDto ReqCustomerDto) (int, RespCreateDto, error) {
+	var respDto RespCreateDto
 	b, err := xml.MarshalIndent(reqDto, "", " ")
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	xmlData := string(b)
 	verifyCode, err := sign.GetMD5Base64(xmlData + custDto.Checkword)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqParam := map[string]string{
 		"xml":        xmlData,
 		"verifyCode": verifyCode,
 	}
-	respDto = &RespCreateDto{}
-	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
+	statusCode, err := httpreq.New(http.MethodPost, custDto.Url,
 		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
 			httpReq.ReqDataType = httpreq.FormType
 			httpReq.RespDataType = httpreq.XmlType
@@ -36,45 +33,30 @@ func Create(reqDto *ReqCreateDto, custDto *ReqCustomerDto) (statusCode int, code
 		}).
 		Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	if respDto.Head != "OK" {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Error.Error)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 
 }
 
-func Route(reqDto *ReqRouteDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespRouteDto, err error) {
+func Route(reqDto ReqRouteDto, custDto ReqCustomerDto) (int, RespRouteDto, error) {
+	var respDto RespRouteDto
 	b, err := xml.MarshalIndent(reqDto, "", " ")
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	xmlData := string(b)
 	verifyCode, err := sign.GetMD5Base64(xmlData + custDto.Checkword)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqParam := map[string]string{
 		"xml":        xmlData,
 		"verifyCode": verifyCode,
 	}
-	respDto = &RespRouteDto{}
 
-	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
+	statusCode, err := httpreq.New(http.MethodPost, custDto.Url,
 		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
 			httpReq.ReqDataType = httpreq.FormType
 			httpReq.RespDataType = httpreq.XmlType
@@ -82,45 +64,30 @@ func Route(reqDto *ReqRouteDto, custDto *ReqCustomerDto) (statusCode int, code s
 		}).
 		Call(&respDto)
 	if err != nil {
-		code = E01
-		return
-	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
 
-	if respDto.Head != "OK" {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Error.Error)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 
 }
 
-func Confirm(reqDto *ReqConfirmDto, custDto *ReqCustomerDto) (statusCode int, code string, respDto *RespConfirmDto, err error) {
+func Confirm(reqDto ReqConfirmDto, custDto ReqCustomerDto) (int, RespConfirmDto, error) {
+	var respDto RespConfirmDto
 	b, err := xml.MarshalIndent(reqDto, "", " ")
 	if err != nil {
-		code = E02
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	xmlData := string(b)
 	verifyCode, err := sign.GetMD5Base64(xmlData + custDto.Checkword)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusBadRequest, respDto, err
 	}
 	reqParam := map[string]string{
 		"xml":        xmlData,
 		"verifyCode": verifyCode,
 	}
-	respDto = &RespConfirmDto{}
 
-	statusCode, err = httpreq.New(http.MethodPost, custDto.Url,
+	statusCode, err := httpreq.New(http.MethodPost, custDto.Url,
 		base.JoinMapStringEncode(reqParam), func(httpReq *httpreq.HttpReq) error {
 			httpReq.ReqDataType = httpreq.FormType
 			httpReq.RespDataType = httpreq.XmlType
@@ -128,22 +95,8 @@ func Confirm(reqDto *ReqConfirmDto, custDto *ReqCustomerDto) (statusCode int, co
 		}).
 		Call(&respDto)
 	if err != nil {
-		code = E01
-		return
+		return http.StatusInternalServerError, respDto, err
 	}
-	if statusCode != http.StatusOK {
-		code = E01
-		err = fmt.Errorf("http status exp:200,act:%v", statusCode)
-		return
-	}
-
-	if respDto.Head != "OK" {
-		code = E03
-		err = fmt.Errorf("%v", respDto.Error.Error)
-		return
-	}
-
-	code = SUC
-	return
+	return statusCode, respDto, nil
 
 }

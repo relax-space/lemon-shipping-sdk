@@ -6,47 +6,47 @@ import "github.com/pangpanglabs/goutils/behaviorlog"
 request param
 */
 type ReqCreateDto struct {
-	*ReqBase
-	Content *CreateContentDto `json:"content"`
+	ReqBase
+	Content CreateContentDto `json:"content"`
 }
 
 type ReqCancelDto struct {
-	*ReqBase
-	Content *CancelContentDto `json:"content"`
+	ReqBase
+	Content CancelContentDto `json:"content"`
 }
 
 type ReqQueryDto struct {
-	*ReqBase
-	Content *QueryContentDto `json:"content"`
+	ReqBase
+	Content QueryContentDto `json:"content"`
 }
 
 type ReqGetOrdernoByBillnoDto struct {
-	*ReqBase
-	Content *GetOrdernoByBillnoContentDto `json:"content"`
+	ReqBase
+	Content GetOrdernoByBillnoContentDto `json:"content"`
 }
 
 type RespCreateDto struct {
-	*RespBase
-	Info *CreateInfoDto `json:"info"`
+	RespBase
+	Info CreateInfoDto `json:"info"`
 }
 
 type RespCancelDto struct {
-	*RespBase
+	RespBase
 	Info []string `json:"info"`
 }
 
 type RespQueryDto struct {
-	*RespBase
+	RespBase
 	Info []QueryInfoDto `json:"info"`
 }
 
 type RespGetOrdernoByBillnoDto struct {
-	*RespBase
-	Info *GetOrdernoByBillnoInfoDto `json:"info"`
+	RespBase
+	Info GetOrdernoByBillnoInfoDto `json:"info"`
 }
 
 type RespCommonDto struct {
-	*RespBase
+	RespBase
 	Info interface{} `json:"info"`
 }
 
@@ -77,8 +77,8 @@ type CreateContentDto struct {
 	Quantity int64        `json:"quantity"`
 	Package  int64        `json:"package"`
 	Volume   float64      `json:"volume"`
-	Receiver *ReceiverDto `json:"receiver"`
-	Sender   *SenderDto   `json:"sender"`
+	Receiver ReceiverDto `json:"receiver"`
+	Sender   SenderDto   `json:"sender"`
 }
 type ReceiverDto struct {
 	Code    string `json:"code"`
@@ -123,5 +123,5 @@ type GetOrdernoByBillnoInfoDto struct {
 
 type ReqCustomerDto struct {
 	Url        string `json:"url,omitempty"`
-	LogContext *behaviorlog.LogContext
+	LogContext behaviorlog.LogContext
 }

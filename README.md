@@ -101,3 +101,10 @@ custDto := &ReqCustomerDto{
 	status, respDto, err := Query(reqDto, custDto)
 	fmt.Println(status, respDto.RespBase, respDto.Info, err)
 ```
+
+
+## Test
+
+``` shell
+$ go test -v ./shipping_test/util_test.go  ./shipping_test/spring_test.go
+```
